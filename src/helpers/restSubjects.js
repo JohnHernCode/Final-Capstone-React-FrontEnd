@@ -1,33 +1,29 @@
-import { sendRequestWithData, sendRequestWithoutData } from '../api/api';
+import {sendRequestWithData, sendRequestWithoutData} from '../api/api';
 
 export const getSubjects = async () => {
-  const response = await sendRequestWithoutData('get', 'subjects')
+  return await sendRequestWithoutData('get', 'subjects')
       .then((response) => response.data).catch((error) => error);
-  return response;
 };
 
 export const updateSubject = async (id, title, unit, icon, target) => {
-  const response = await sendRequestWithData('put', `subjects/${id}`, {
-    item: {
+  return await sendRequestWithData('put', `subjects/${id}`, {
+    subject: {
       title, unit, icon, target,
     },
   })
       .then((response) => response.data).catch((error) => error);
-  return response;
 };
 
 export const addNewSubject = async (title, unit, icon, target) => {
-  const response = await sendRequestWithData('post', 'subjects', {
-    item: {
+  return await sendRequestWithData('post', 'subjects', {
+    subject: {
       title, unit, icon, target,
     },
   })
       .then((response) => response).catch((error) => error);
-  return response;
 };
 
 export const removeSubjectFromDB = async (id) => {
-  const response = await sendRequestWithoutData('delete', `subjects/${id}`)
+  return await sendRequestWithoutData('delete', `subjects/${id}`)
       .then((response) => response).catch((error) => error);
-  return response;
 };

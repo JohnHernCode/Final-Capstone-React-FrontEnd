@@ -4,8 +4,8 @@ import PropTypes from 'prop-types';
 import pluralize from 'pluralize';
 import { moment } from '../api/api';
 
-const MeasureForm = ({
-                     items, handleSubmit, subjectTitles, targetDate,
+const measureForm = ({
+                     subjects, handleSubmit, subjectTitles, targetDate,
                    }) => {
   const [error, setError] = useState('');
   const [date, setDate] = useState(targetDate ? moment(targetDate).format('YYYY-MM-DD') : moment().format('YYYY-MM-DD'));
@@ -38,22 +38,22 @@ const MeasureForm = ({
             <input type="date" onChange={onDateChange} value={date} />
           </div>
           <div className="measure-form__group mb3">
-            {items.map((item) => (
-                <div className="measure-form__subject" key={item.id}>
+            {subjects.map((subject) => (
+                <div className="measure-form__subject" key={subject.id}>
                   <div className="measure-form__icon">
-                    <span className="iconify" data-icon={item.icon} data-inline="false" />
+                    <span className="iconify" data-icon={subject.icon} data-inline="false" />
                   </div>
-                  <div className="measure-form__title">{item.title}</div>
+                  <div className="measure-form__title">{subject.title}</div>
                   <input
                       type="number"
-                      name={item.title}
+                      name={subject.title}
                       className="measure-form__input"
                       maxLength="4"
-                      onChange={(e) => handleInputChange(e.target.value, item.id)}
-                      value={state[item.id]}
+                      onChange={(e) => handleInputChange(e.target.value, subject.id)}
+                      value={state[subject.id]}
                   />
-                  <div className="measure-form__unit">{pluralize(item.unit, state[item.id])}</div>
-                  <div className="measure-form__target">{`/ ${item.target}`}</div>
+                  <div className="measure-form__unit">{pluralize(subject.unit, state[subject.id])}</div>
+                  <div className="measure-form__target">{`/ ${subject.target}`}</div>
                 </div>
             ))}
           </div>
@@ -64,21 +64,21 @@ const MeasureForm = ({
 };
 
 const mapStateToProps = (state) => ({
-  items: state.items,
+  subjects: state.subjects,
 });
 
-MeasureForm.propTypes = {
-  items: PropTypes.instanceOf(Object),
+measureForm.propTypes = {
+  subjects: PropTypes.instanceOf(Object),
   handleSubmit: PropTypes.func,
-  itemTitles: PropTypes.instanceOf(Object),
+  subjectTitles: PropTypes.instanceOf(Object),
   targetDate: PropTypes.number,
 };
 
-MeasureForm.defaultProps = {
-  items: [],
+measureForm.defaultProps = {
+  subjects: [],
   handleSubmit: null,
-  itemTitles: {},
+  subjectTitles: {},
   targetDate: 0,
 };
 
-export default connect(mapStateToProps)(MeasureForm);
+export default connect(mapStateToProps)(measureForm);

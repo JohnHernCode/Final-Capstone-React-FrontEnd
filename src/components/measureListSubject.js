@@ -7,7 +7,7 @@ import { BiChevronRightCircle } from 'react-icons/bi';
 import { moment } from '../api/api';
 import calcAchieveTotalRate from '../helpers/calcAchieveTotalRate';
 
-const TrackListItem = ({ milSec, sameDateMeasurements, subjectNum }) => {
+const measureListSubject = ({ milSec, sameDateMeasures, subjectNum }) => {
   const [dateSign, setDateSign] = useState('');
 
   const checkDateSign = () => {
@@ -36,7 +36,7 @@ const TrackListItem = ({ milSec, sameDateMeasurements, subjectNum }) => {
     }, 1000);
   }, []);
 
-  const totalRate = calcAchieveTotalRate(sameDateMeasurements, subjectNum) || 0;
+  const totalRate = calcAchieveTotalRate(sameDateMeasures, subjectNum) || 0;
   const rateForChart = totalRate >= 100 ? 100 : totalRate;
   const leftRateForChart = 100 - rateForChart;
 
@@ -82,16 +82,16 @@ const TrackListItem = ({ milSec, sameDateMeasurements, subjectNum }) => {
   );
 };
 
-TrackListItem.propTypes = {
+measureListSubject.propTypes = {
   milSec: PropTypes.number,
-  sameDateMeasurements: PropTypes.instanceOf(Array),
+  sameDateMeasures: PropTypes.instanceOf(Array),
   subjectNum: PropTypes.number,
 };
 
-TrackListItem.defaultProps = {
+measureListSubject.defaultProps = {
   milSec: 0,
-  sameDateMeasurements: [],
+  sameDateMeasures: [],
   subjectNum: 0,
 };
 
-export default TrackListItem;
+export default measureListSubject;

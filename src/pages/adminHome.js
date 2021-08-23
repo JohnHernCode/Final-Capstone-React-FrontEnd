@@ -35,12 +35,12 @@ const adminHome = ({
       <div className="admin">
         <h1 className="heading">
           Subjects
-          <span className="admin-icon">admin</span>
+          <span className="admin-icon">Admin</span>
         </h1>
         <div className="content">
           {error && <p className="error-msg">{error}</p>}
-          <div className="admin__items mb3">
-            {subjects.length > 0 && <subjectList items={subjects} />}
+          <div className="admin__subjects mb3">
+            {subjects.length > 0 && <subjectList subjects={subjects} />}
           </div>
           <Link to="/admin/subject/create" className="btn dark">Add Subject</Link>
         </div>

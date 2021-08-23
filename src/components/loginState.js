@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-const LoginState = ({ loginS, user }) => (
+const loginState = ({ loginS, user }) => (
     <div className="login-status">
       {loginS ? `Welcome, ${user.user.username}` : 'Please log in.'}
     </div>
@@ -13,14 +13,14 @@ const mapStateToProps = (state) => ({
   user: state.user,
 });
 
-LoginState.propTypes = {
+loginState.propTypes = {
   user: PropTypes.instanceOf(Object),
   loginS: PropTypes.bool,
 };
 
-LoginState.defaultProps = {
+loginState.defaultProps = {
   user: {},
   loginS: false,
 };
 
-export default connect(mapStateToProps)(LoginState);
+export default connect(mapStateToProps)(loginState);
