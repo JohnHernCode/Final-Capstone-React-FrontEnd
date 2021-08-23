@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import Chart from 'react-google-charts';
-import { GrAchievement } from 'react-icons/gi';
+import { GiAchievement } from 'react-icons/gi';
 import { BiChevronRightCircle } from 'react-icons/bi';
 import { moment } from '../api/api';
 import calcAchieveTotalRate from '../helpers/calcAchieveTotalRate';
@@ -68,7 +68,7 @@ const TrackListItem = ({ milSec, sameDateMeasurements, subjectNum }) => {
           <div className="measure__subject__rate">
             {rateForChart >= 100 && (
                 <span className="goodjob">
-              <GrAchievement />
+              <GiAchievement />
             </span>
             )}
             <span className="rate">{rateForChart}</span>
