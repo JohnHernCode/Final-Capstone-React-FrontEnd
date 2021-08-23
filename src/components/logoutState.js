@@ -9,7 +9,7 @@ const logout = ({
                      logIn, removeAllMeasures, setUser, removeAllMeasureDates,
                    }) => {
   const onLogout = () => {
-    localStorage.removeSubject('token');
+    localStorage.removeItem('token');
     logIn(false);
     setUser({});
     removeAllMeasures();

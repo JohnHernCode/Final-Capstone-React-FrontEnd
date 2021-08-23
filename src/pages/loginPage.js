@@ -17,7 +17,7 @@ const loginPage = ({
       const response = await loggedIn(username, password);
       if (response.logged_in) {
         setMsg('Logging in...');
-        localStorage.setSubject('token', response.token);
+        localStorage.setItem('token', response.token);
         setUser(response.user);
         logIn(true);
         history.push(response.user.admin ? '/admin' : '/measures');

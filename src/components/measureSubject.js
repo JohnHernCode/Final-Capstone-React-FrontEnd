@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import pluralize from 'pluralize';
 
-const MeasureSubject = ({ subject, result, targetDate }) => {
+const measureSubject = ({ subject, result, targetDate }) => {
   const {
     icon, unit, title, target,
   } = subject;
@@ -11,8 +11,8 @@ const MeasureSubject = ({ subject, result, targetDate }) => {
   const AchievementRate = Math.floor((rate >= 1 ? 1 : rate) * 100);
 
   return (
-      <div className="subject__item">
-        <Link to={`/measure/${Number(targetDate)}/edit`} className="subject__item-link">
+      <div className="subject__subject">
+        <Link to={`/measure/${Number(targetDate)}/edit`} className="subject__subject-link">
           <div className="subject__icon">
             <span className="iconify" data-icon={icon || 'bi:pen-fill'} data-inline="false" />
           </div>
@@ -29,16 +29,16 @@ const MeasureSubject = ({ subject, result, targetDate }) => {
   );
 };
 
-MeasureSubject.propTypes = {
+measureSubject.propTypes = {
   subject: PropTypes.instanceOf(Object),
   result: PropTypes.number,
   targetDate: PropTypes.number,
 };
 
-MeasureSubject.defaultProps = {
+measureSubject.defaultProps = {
   subject: {},
   result: 0,
   targetDate: 0,
 };
 
-export default MeasureSubject;
+export default measureSubject;
