@@ -27,7 +27,7 @@ const adminHome = ({
 
   useEffect(() => {
     if (adminStatus) {
-      runGetSubjects().then(r => {});
+      runGetSubjects();
     }
   }, []);
 

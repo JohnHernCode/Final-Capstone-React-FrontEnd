@@ -29,7 +29,7 @@ const runAutoLogin = async (userId) => {
 
 if (localStorage.token) {
   const decodedToken = decode(localStorage.token);
-  runAutoLogin(decodedToken.user_id).then(r => {});
+  runAutoLogin(decodedToken.user_id);
 } else {
   store.dispatch(logIn(false));
 }
