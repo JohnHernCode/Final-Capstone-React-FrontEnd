@@ -1,3 +1,3 @@
-const baseUrl = 'https://final-capstone-johnherncode.herokuapp.com/';
+const baseUrl = 'https://capstone-api-johnhern.herokuapp.com';
 
 export default baseUrl;
