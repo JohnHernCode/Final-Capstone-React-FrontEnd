@@ -41,44 +41,44 @@ const measureListSubject = ({ milSec, sameDateMeasures, subjectNum }) => {
   const leftRateForChart = 100 - rateForChart;
 
   return (
-      <div className={`measure__subject ${dateSign}`}>
-        <div className="measure__subject__sign">{dateSign !== 'lastweek' ? dateSign : ''}</div>
-        <Link to={`/measures/${milSec}`} className="measure__subject__link">
-          <div className="measure__subject__graph">
-            <Chart
-                width="60px"
-                height="60px"
-                chartType="PieChart"
-                loader={<div className="loader">Loading...</div>}
-                data={[['Pac Man', 'Percentage'], ['', rateForChart], ['', leftRateForChart]]}
-                options={{
-                  legend: 'none',
-                  pieSliceText: 'none',
-                  pieStartAngle: 0,
-                  tooltip: { trigger: 'none' },
-                  slices: {
-                    0: { color: '#41b5e8' },
-                    1: { color: '#eaeef1' },
-                  },
-                }}
-                rootProps={{ 'data-testid': '6' }}
-            />
-          </div>
-          <div className="measure__item__date">{moment(milSec).format('MMM Do YYYY')}</div>
-          <div className="measure__subject__rate">
-            {rateForChart >= 100 && (
-                <span className="goodjob">
+    <div className={`measure__subject ${dateSign}`}>
+      <div className="measure__subject__sign">{dateSign !== 'lastweek' ? dateSign : ''}</div>
+      <Link to={`/measures/${milSec}`} className="measure__subject__link">
+        <div className="measure__subject__graph">
+          <Chart
+            width="60px"
+            height="60px"
+            chartType="PieChart"
+            loader={<div className="loader">Loading...</div>}
+            data={[['Pac Man', 'Percentage'], ['', rateForChart], ['', leftRateForChart]]}
+            options={{
+              legend: 'none',
+              pieSliceText: 'none',
+              pieStartAngle: 0,
+              tooltip: { trigger: 'none' },
+              slices: {
+                0: { color: '#41b5e8' },
+                1: { color: '#eaeef1' },
+              },
+            }}
+            rootProps={{ 'data-testid': '6' }}
+          />
+        </div>
+        <div className="measure__item__date">{moment(milSec).format('MMM Do YYYY')}</div>
+        <div className="measure__subject__rate">
+          {rateForChart >= 100 && (
+            <span className="goodjob">
               <GiAchievement />
             </span>
-            )}
-            <span className="rate">{rateForChart}</span>
-            %
-          </div>
-          <div className="measure__subject__toright">
-            <BiChevronRightCircle />
-          </div>
-        </Link>
-      </div>
+          )}
+          <span className="rate">{rateForChart}</span>
+          %
+        </div>
+        <div className="measure__subject__toright">
+          <BiChevronRightCircle />
+        </div>
+      </Link>
+    </div>
   );
 };
 

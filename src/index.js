@@ -1,18 +1,18 @@
 import React from 'react';
 import { Provider } from 'react-redux';
 import ReactDOM from 'react-dom';
-import rootReducer from './reducers';
-import AppRouter from './routes/AppRouter';
+import setStore from './store/setupStore';
 import { decode } from './api/api';
 import { setUser, logIn } from './actions/user';
 import { autoLogin } from './api/userAuth';
 import './css/index.css';
+import AppRoutes from './routes/AppRoutes';
 
-const store = rootReducer;
+const store = setStore();
 const body = (
-    <Provider store={store}>
-      <AppRouter />
-    </Provider>
+  <Provider store={store}>
+    <AppRoutes />
+  </Provider>
 );
 
 const runAutoLogin = async (userId) => {
@@ -35,6 +35,3 @@ if (localStorage.token) {
 }
 
 ReactDOM.render(body, document.getElementById('root'));
-
-
-

@@ -11,8 +11,8 @@ import addSubjects from '../actions/subjects';
 import { addMeasureDates } from '../actions/measureDates';
 
 const measureList = ({
-                     addMeasures, loginUser, addMeasureDates, measureDates, measures, subjects, addSubjects,
-                   }) => {
+  addMeasures, loginUser, addMeasureDates, measureDates, measures, subjects, addSubjects,
+}) => {
   const [error, setError] = useState('');
 
   const runGetSubjects = async () => {
@@ -52,28 +52,28 @@ const measureList = ({
   }, []);
 
   return loginUser ? (
-      <div className="MeasureList">
-        <h1 className="heading">All measures</h1>
-        <div className="content">
-          {error && <p className="error-msg">{error}</p>}
-          <div className="measures mb3">
-            {measureDates.length > 0 && measureDates.map((measureDate) => {
-              const milSec = Number(measureDate);
-              const sameDateMeasures = measures.filter((measure) => moment(Number(measure.date)).isSame(moment(milSec), 'day'));
+    <div className="MeasureList">
+      <h1 className="heading">All measures</h1>
+      <div className="content">
+        {error && <p className="error-msg">{error}</p>}
+        <div className="measures mb3">
+          {measureDates.length > 0 && measureDates.map((measureDate) => {
+            const milSec = Number(measureDate);
+            const sameDateMeasures = measures.filter((measure) => moment(Number(measure.date)).isSame(moment(milSec), 'day'));
 
-              return (
-                  <measureListSubject
-                      milSec={milSec}
-                      key={milSec}
-                      sameDateMeasures={sameDateMeasures}
-                      subjectNum={subjects.length}
-                  />
-              );
-            })}
-          </div>
-          <Link to="measure/create" className="btn dark">Add New measure</Link>
+            return (
+              <measureListSubject
+                milSec={milSec}
+                key={milSec}
+                sameDateMeasures={sameDateMeasures}
+                subjectNum={subjects.length}
+              />
+            );
+          })}
         </div>
+        <Link to="measure/create" className="btn dark">Add New measure</Link>
       </div>
+    </div>
   ) : <Redirect to="/" />;
 };
 

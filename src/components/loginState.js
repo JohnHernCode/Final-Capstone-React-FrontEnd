@@ -3,9 +3,9 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 const loginState = ({ loginS, user }) => (
-    <div className="login-status">
-      {loginS ? `Welcome, ${user.user.username}` : 'Please log in.'}
-    </div>
+  <div className="login-status">
+    {loginS ? `Welcome, ${user.user.username}` : 'Please log in.'}
+  </div>
 );
 
 const mapStateToProps = (state) => ({

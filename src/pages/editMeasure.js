@@ -6,11 +6,11 @@ import measureForm from '../components/measureForm';
 import { updateMeasure, addNewMeasure } from '../helpers/restMeasures';
 import { getSubjects } from '../helpers/restSubjects';
 import addSubjects from '../actions/subjects';
-import getSubjectTitles from "../helpers/getSubjectTitles";
+import getSubjectTitles from '../helpers/getSubjectTitles';
 
-const editTrack = ({
-                     loginUser, history, subjects, addSubjects, sameDateMeasures, targetDate,
-                   }) => {
+const editMeasure = ({
+  loginUser, history, subjects, addSubjects, sameDateMeasures, targetDate,
+}) => {
   const [error, setError] = useState('');
   const [msg, setMsg] = useState('');
 
@@ -54,6 +54,7 @@ const editTrack = ({
       const submitSubjectId = Number(key);
       const submitSubjectValue = state[key];
 
+      // eslint-disable-next-line max-len
       const sameSubjectMeasure = sameDateMeasures.find((measure) => measure.subject_id === submitSubjectId);
       if (sameSubjectMeasure && submitSubjectValue) {
         runUpdateMeasure(sameSubjectMeasure.id, submitSubjectValue, submitSubjectId, StrDate);
@@ -71,15 +72,19 @@ const editTrack = ({
   const subjectTitles = getSubjectTitles(subjects, sameDateMeasures);
 
   return (loginUser ? (
-      <div className="add-measure">
-        <h1 className="heading">Edit Measurement</h1>
-        <div className="content">
-          {error && <p className="error-msg">{error}</p>}
-          <measureForm handleSubmit={handleSubmit} subjectTitles={subjectTitles} targetDate={targetDate} />
-          {msg && <p className="info-msg">{msg}</p>}
-          <Link to="/measures" className="btn">Cancel & Back to Measurements List</Link>
-        </div>
+    <div className="add-measure">
+      <h1 className="heading">Edit Measurement</h1>
+      <div className="content">
+        {error && <p className="error-msg">{error}</p>}
+        <measureForm
+          handleSubmit={handleSubmit}
+          subjectTitles={subjectTitles}
+          targetDate={targetDate}
+        />
+        {msg && <p className="info-msg">{msg}</p>}
+        <Link to="/measures" className="btn">Cancel & Back to Measurements List</Link>
       </div>
+    </div>
   ) : <Redirect to="/" />);
 };
 
@@ -94,7 +99,7 @@ const mapDispatchToProps = (dispatch) => ({
   addSubjects: (subjects) => dispatch(addSubjects(subjects)),
 });
 
-editTrack.propTypes = {
+editMeasure.propTypes = {
   subjects: PropTypes.instanceOf(Array),
   loginUser: PropTypes.bool.isRequired,
   history: PropTypes.instanceOf(Object),
@@ -103,11 +108,11 @@ editTrack.propTypes = {
   targetDate: PropTypes.number,
 };
 
-editTrack.defaultProps = {
+editMeasure.defaultProps = {
   subjects: [],
   history: null,
   addSubjects: null,
   sameDateMeasures: [],
   targetDate: null,
 };
-export default connect(mapStateToProps, mapDispatchToProps)(editTrack);
+export default connect(mapStateToProps, mapDispatchToProps)(editMeasure);

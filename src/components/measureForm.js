@@ -5,8 +5,8 @@ import pluralize from 'pluralize';
 import { moment } from '../api/api';
 
 const measureForm = ({
-                     subjects, handleSubmit, subjectTitles, targetDate,
-                   }) => {
+  subjects, handleSubmit, subjectTitles, targetDate,
+}) => {
   const [error, setError] = useState('');
   const [date, setDate] = useState(targetDate ? moment(targetDate).format('YYYY-MM-DD') : moment().format('YYYY-MM-DD'));
   const [state, setState] = useState(subjectTitles);
@@ -31,35 +31,35 @@ const measureForm = ({
   };
 
   return (
-      <div className="measure-form mb3">
-        {error && <p className="error-msg">{error}</p>}
-        <form className="measure-form__form mb3" onSubmit={onSubmit}>
-          <div className="measure-form__date">
-            <input type="date" onChange={onDateChange} value={date} />
-          </div>
-          <div className="measure-form__group mb3">
-            {subjects.map((subject) => (
-                <div className="measure-form__subject" key={subject.id}>
-                  <div className="measure-form__icon">
-                    <span className="iconify" data-icon={subject.icon} data-inline="false" />
-                  </div>
-                  <div className="measure-form__title">{subject.title}</div>
-                  <input
-                      type="number"
-                      name={subject.title}
-                      className="measure-form__input"
-                      maxLength="4"
-                      onChange={(e) => handleInputChange(e.target.value, subject.id)}
-                      value={state[subject.id]}
-                  />
-                  <div className="measure-form__unit">{pluralize(subject.unit, state[subject.id])}</div>
-                  <div className="measure-form__target">{`/ ${subject.target}`}</div>
-                </div>
-            ))}
-          </div>
-          <button type="submit" className="btn dark">Save</button>
-        </form>
-      </div>
+    <div className="measure-form mb3">
+      {error && <p className="error-msg">{error}</p>}
+      <form className="measure-form__form mb3" onSubmit={onSubmit}>
+        <div className="measure-form__date">
+          <input type="date" onChange={onDateChange} value={date} />
+        </div>
+        <div className="measure-form__group mb3">
+          {subjects.map((subject) => (
+            <div className="measure-form__subject" key={subject.id}>
+              <div className="measure-form__icon">
+                <span className="iconify" data-icon={subject.icon} data-inline="false" />
+              </div>
+              <div className="measure-form__title">{subject.title}</div>
+              <input
+                type="number"
+                name={subject.title}
+                className="measure-form__input"
+                maxLength="4"
+                onChange={(e) => handleInputChange(e.target.value, subject.id)}
+                value={state[subject.id]}
+              />
+              <div className="measure-form__unit">{pluralize(subject.unit, state[subject.id])}</div>
+              <div className="measure-form__target">{`/ ${subject.target}`}</div>
+            </div>
+          ))}
+        </div>
+        <button type="submit" className="btn dark">Save</button>
+      </form>
+    </div>
   );
 };
 

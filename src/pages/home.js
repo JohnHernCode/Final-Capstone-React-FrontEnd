@@ -5,21 +5,21 @@ import PropTypes from 'prop-types';
 import logout from '../components/logoutState';
 
 const Home = ({ history, loginUser }) => (
-    <div>
-      <h1 className="heading">Home</h1>
-      <div className="content">
-        <h2 className="home__heading">
-          Welcome to Track it App!
-        </h2>
-        {loginUser ? <logout history={history} /> : (
-            <div>
-              <Link to="/login" className="btn mb2 dark">Login</Link>
-              <Link to="/signup" className="btn mb2 medium">Signup</Link>
-            </div>
-        )}
+  <div>
+    <h1 className="heading">Home</h1>
+    <div className="content">
+      <h2 className="home__heading">
+        Welcome to Track it App!
+      </h2>
+      {loginUser ? <logout history={history} /> : (
+        <div>
+          <Link to="/login" className="btn mb2 dark">Login</Link>
+          <Link to="/signup" className="btn mb2 medium">Signup</Link>
+        </div>
+      )}
 
-      </div>
     </div>
+  </div>
 );
 
 const mapStateToProps = (state) => ({

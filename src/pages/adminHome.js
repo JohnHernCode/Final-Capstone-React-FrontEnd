@@ -7,8 +7,8 @@ import addSubjects from '../actions/subjects';
 import { getSubjects } from '../helpers/restSubjects';
 
 const adminHome = ({
-                     addSubjects, subjects, adminStatus, loginUser,
-                   }) => {
+  addSubjects, subjects, adminStatus, loginUser,
+}) => {
   const [error, setError] = useState('');
 
   const runGetSubjects = async () => {
@@ -32,19 +32,19 @@ const adminHome = ({
   }, []);
 
   return adminStatus && loginUser ? (
-      <div className="admin">
-        <h1 className="heading">
-          Subjects
-          <span className="admin-icon">Admin</span>
-        </h1>
-        <div className="content">
-          {error && <p className="error-msg">{error}</p>}
-          <div className="admin__subjects mb3">
-            {subjects.length > 0 && <subjectList subjects={subjects} />}
-          </div>
-          <Link to="/admin/subject/create" className="btn dark">Add Subject</Link>
+    <div className="admin">
+      <h1 className="heading">
+        Subjects
+        <span className="admin-icon">Admin</span>
+      </h1>
+      <div className="content">
+        {error && <p className="error-msg">{error}</p>}
+        <div className="admin__subjects mb3">
+          {subjects.length > 0 && <subjectList subjects={subjects} />}
         </div>
+        <Link to="/admin/subject/create" className="btn dark">Add Subject</Link>
       </div>
+    </div>
   ) : <Redirect to="/" />;
 };
 

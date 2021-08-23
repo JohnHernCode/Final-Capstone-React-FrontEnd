@@ -7,8 +7,8 @@ import { loggedIn } from '../helpers/authUser';
 import { logIn, setUser } from '../actions/user';
 
 const loginPage = ({
-                     history, setUser, logIn, loginUser,
-                   }) => {
+  history, setUser, logIn, loginUser,
+}) => {
   const [errors, setErrors] = useState([]);
   const [msg, setMsg] = useState('');
 
@@ -36,15 +36,15 @@ const loginPage = ({
   };
 
   return loginUser ? <Redirect to="/measures" /> : (
-      <div>
-        <h1 className="heading">Login</h1>
-        <div className="content">
-          {errors && errors.map((error) => (<p key={error}>{error}</p>))}
-          {msg && <p className="info-msg">{msg}</p>}
-          <usersForm handleSubmit={handleSubmit} btnName="Login" />
-          <Link to="/" className="btn">Go back to Home</Link>
-        </div>
+    <div>
+      <h1 className="heading">Login</h1>
+      <div className="content">
+        {errors && errors.map((error) => (<p key={error}>{error}</p>))}
+        {msg && <p className="info-msg">{msg}</p>}
+        <usersForm handleSubmit={handleSubmit} btnName="Login" />
+        <Link to="/" className="btn">Go back to Home</Link>
       </div>
+    </div>
   );
 };
 

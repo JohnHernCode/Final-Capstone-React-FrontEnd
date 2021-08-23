@@ -6,8 +6,8 @@ import { removeAllMeasures } from '../actions/measures';
 import { removeAllMeasureDates } from '../actions/measureDates';
 
 const logout = ({
-                     logIn, removeAllMeasures, setUser, removeAllMeasureDates,
-                   }) => {
+  logIn, removeAllMeasures, setUser, removeAllMeasureDates,
+}) => {
   const onLogout = () => {
     localStorage.removeItem('token');
     logIn(false);
@@ -17,7 +17,7 @@ const logout = ({
   };
 
   return (
-      <button type="button" onClick={onLogout} className="btn">Logout</button>
+    <button type="button" onClick={onLogout} className="btn">Logout</button>
   );
 };
 

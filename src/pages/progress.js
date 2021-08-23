@@ -13,8 +13,8 @@ import { getSubjects } from '../helpers/restSubjects';
 import addSubjects from '../actions/subjects';
 
 const Progress = ({
-                    addMeasures, loginUser, addMeasureDates, measureDates, measures, subjects, addSubjects,
-                  }) => {
+  addMeasures, loginUser, addMeasureDates, measureDates, measures, subjects, addSubjects,
+}) => {
   const [error, setError] = useState('');
 
   const runGetSubjects = async () => {
@@ -57,90 +57,91 @@ const Progress = ({
   const percentForChart = arMonth >= 100 ? 100 : arMonth;
   const leftPercentForChart = 100 - percentForChart;
   return loginUser ? (
-      <div className="progress">
-        <h1 className="heading">Your Progress</h1>
-        <div className="content">
-          {error && <p className="error-msg">{error}</p>}
-          <div className="progress__header">
-            <div className="progress__title">
-              Average achievements rate for the last 30 days
-            </div>
-            <div className="progress__chart__text">
-              <span className="txt">You achieved</span>
-              <span className="num">
+    <div className="progress">
+      <h1 className="heading">Your Progress</h1>
+      <div className="content">
+        {error && <p className="error-msg">{error}</p>}
+        <div className="progress__header">
+          <div className="progress__title">
+            Average achievements rate for the last 30 days
+          </div>
+          <div className="progress__chart__text">
+            <span className="txt">You achieved</span>
+            <span className="num">
               {`${arMonth}`}
             </span>
-              <span className="txt">on average</span>
-            </div>
-            <div className="progress__chart__container">
-              <Chart
-                  width="400px"
-                  height="400px"
-                  chartType="PieChart"
-                  loader={<div className="loader">Loading...</div>}
-                  data={[['Pac Man', 'Percentage'], ['', percentForChart], ['', leftPercentForChart]]}
-                  options={{
-                    legend: 'none',
-                    pieSliceText: 'none',
-                    pieStartAngle: 0,
-                    tooltip: { trigger: 'none' },
-                    slices: {
-                      0: { color: '#86df81' },
-                      1: { color: '#eaeef1' },
-                    },
-                  }}
-                  rootProps={{ 'data-testid': '6' }}
-              />
-            </div>
+            <span className="txt">on average</span>
           </div>
-          <div className="progress__graph">
-            <div className="progress__title">
-              Weekly Achievements Rate (%)
-            </div>
-            <div className="progress__graph__container">
-              <Chart
-                  width="100%"
-                  height="200px"
-                  chartType="Bar"
-                  loader={<div>Loading Chart</div>}
-                  data={[
-                    ['', ''],
-                    ['This week', getAvgRate(measureDates, measures, 'THIS_WEEK')],
-                    ['Last week', getAvgRate(measureDates, measures, 'LAST_WEEK')],
-                    ['2 weeks ago', getAvgRate(measureDates, measures, 'TWO_WEEKS_BEFORE')],
-                    ['3 weeks ago', getAvgRate(measureDates, measures, 'THREE_WEEKS_BEFORE')],
-                    ['Last month', getAvgRate(measureDates, measures, 'LAST_MONTH')],
-                  ]}
-                  rootProps={{ 'data-testid': '2' }}
-              />
-            </div>
+          <div className="progress__chart__container">
+            <Chart
+              width="400px"
+              height="400px"
+              chartType="PieChart"
+              loader={<div className="loader">Loading...</div>}
+              data={[['Pac Man', 'Percentage'], ['', percentForChart], ['', leftPercentForChart]]}
+              options={{
+                legend: 'none',
+                pieSliceText: 'none',
+                pieStartAngle: 0,
+                tooltip: { trigger: 'none' },
+                slices: {
+                  0: { color: '#86df81' },
+                  1: { color: '#eaeef1' },
+                },
+              }}
+              rootProps={{ 'data-testid': '6' }}
+            />
           </div>
-          <div className="progress__subjects mb3">
-            {subjects.map((subject) => {
-              const subjectTotalResult = getSubjectTotals(subject, measures);
-              const formattedSubjectTotal = subjectTotalResult.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-              return (
-                  <div className="progress__subject" key={subject.id}>
-                    <div className="progress__subject__title">
-                      {subject.title}
-                    </div>
-                    <div className="progress__subject__num">
-                      {formattedSubjectTotal}
-                    </div>
-                    <div className="progress__subject__unit">
-                      {pluralize(subject.unit, subjectTotalResult)}
-                    </div>
-                  </div>
-              );
-            })}
-          </div>
-          <Link to="/progress" className="btn">Share</Link>
         </div>
+        <div className="progress__graph">
+          <div className="progress__title">
+            Weekly Achievements Rate (%)
+          </div>
+          <div className="progress__graph__container">
+            <Chart
+              width="100%"
+              height="200px"
+              chartType="Bar"
+              loader={<div>Loading Chart</div>}
+              data={[
+                ['', ''],
+                ['This week', getAvgRate(measureDates, measures, 'THIS_WEEK')],
+                ['Last week', getAvgRate(measureDates, measures, 'LAST_WEEK')],
+                ['2 weeks ago', getAvgRate(measureDates, measures, 'TWO_WEEKS_BEFORE')],
+                ['3 weeks ago', getAvgRate(measureDates, measures, 'THREE_WEEKS_BEFORE')],
+                ['Last month', getAvgRate(measureDates, measures, 'LAST_MONTH')],
+              ]}
+              rootProps={{ 'data-testid': '2' }}
+            />
+          </div>
+        </div>
+        <div className="progress__subjects mb3">
+          {subjects.map((subject) => {
+            const subjectTotalResult = getSubjectTotals(subject, measures);
+            const formattedSubjectTotal = subjectTotalResult.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+            return (
+              <div className="progress__subject" key={subject.id}>
+                <div className="progress__subject__title">
+                  {subject.title}
+                </div>
+                <div className="progress__subject__num">
+                  {formattedSubjectTotal}
+                </div>
+                <div className="progress__subject__unit">
+                  {pluralize(subject.unit, subjectTotalResult)}
+                </div>
+              </div>
+            );
+          })}
+        </div>
+        <Link to="/progress" className="btn">Share</Link>
       </div>
+    </div>
   ) : <Redirect to="/" />;
 };
 
 const mapStateToProps = (state) => ({
+
   subjects: state.subjects,
   measures: state.measures,
   measureDates: state.measureDates,

@@ -1,4 +1,4 @@
-import {moment} from '../api/api';
+import { moment } from '../api/api';
 
 const getSubjectTotals = (subject, measures) => {
   const sameSubjectMeasures = measures.filter((measure) => {

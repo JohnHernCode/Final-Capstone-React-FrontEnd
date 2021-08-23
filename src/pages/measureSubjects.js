@@ -14,17 +14,17 @@ import addSubjects from '../actions/subjects';
 import calcAchieveTotalRate from '../helpers/calcAchieveTotalRate';
 
 const measureSubjects = ({
-                      sameDateMeasures,
-                      subjects,
-                      loginUser,
-                      addSubjects,
-                      date,
-                      measureDates,
-                      currentIndex,
-                      history,
-                      addMeasures,
-                      addMeasureDates,
-                    }) => {
+  sameDateMeasures,
+  subjects,
+  loginUser,
+  addSubjects,
+  date,
+  measureDates,
+  currentIndex,
+  history,
+  addMeasures,
+  addMeasureDates,
+}) => {
   const [error, setError] = useState('');
   const [msg, setMsg] = useState('');
 
@@ -90,65 +90,66 @@ const measureSubjects = ({
   const leftRateForChart = 100 - rateForChart;
 
   return loginUser ? (
-      <div className="subjects">
-        {error && <p className="error-msg">{error}</p>}
-        <h1 className="heading">Track it</h1>
-        <div className="subjects__header">
-          <div className="subjects__date">
-            <Link to={measureDates[currentIndex - 1] || measureDates[currentIndex] || ''}>
-              <GrCaretPrevious />
-            </Link>
-            <span>{moment(date).format('MMM Do YYYY')}</span>
-            <Link to={measureDates[currentIndex + 1] || measureDates[currentIndex] || ''}>
-              <GrCaretNext />
-            </Link>
-          </div>
-          <div className="items__overview">
-            <div className="items__chart__container">
-              <Chart
-                  width="180px"
-                  height="180px"
-                  chartType="PieChart"
-                  loader={<div className="loader">Loading...</div>}
-                  data={[['Pac Man', 'Percentage'], ['', rateForChart], ['', leftRateForChart]]}
-                  options={{
-                    legend: 'none',
-                    pieSliceText: 'none',
-                    pieStartAngle: 0,
-                    tooltip: { trigger: 'none' },
-                    slices: {
-                      0: { color: '#41b5e8' },
-                      1: { color: '#eaeef1' },
-                    },
-                  }}
-                  rootProps={{ 'data-testid': '6' }}
-              />
-            </div>
-            <div className="items__chart__comment">
-              {`Achievements rate: ${rateForChart} %`}
-            </div>
-          </div>
+    <div className="subjects">
+      {error && <p className="error-msg">{error}</p>}
+      <h1 className="heading">Track it</h1>
+      <div className="subjects__header">
+        <div className="subjects__date">
+          <Link to={measureDates[currentIndex - 1] || measureDates[currentIndex] || ''}>
+            <GrCaretPrevious />
+          </Link>
+          <span>{moment(date).format('MMM Do YYYY')}</span>
+          <Link to={measureDates[currentIndex + 1] || measureDates[currentIndex] || ''}>
+            <GrCaretNext />
+          </Link>
         </div>
-        <div className="content">
-          <div className="items__list mb3">
-            {subjects.map((item) => {
-              const targetTrack = sameDateMeasures.find((measure) => measure.subject_id === subject.id);
-              return (
-                  <measureSubject
-                      key={subject.id}
-                      subject={subject}
-                      result={targetMeasure ? targetMeasure.result : 0}
-                      targetDate={date}
-                  />
-              );
-            })}
+        <div className="items__overview">
+          <div className="items__chart__container">
+            <Chart
+              width="180px"
+              height="180px"
+              chartType="PieChart"
+              loader={<div className="loader">Loading...</div>}
+              data={[['Pac Man', 'Percentage'], ['', rateForChart], ['', leftRateForChart]]}
+              options={{
+                legend: 'none',
+                pieSliceText: 'none',
+                pieStartAngle: 0,
+                tooltip: { trigger: 'none' },
+                slices: {
+                  0: { color: '#41b5e8' },
+                  1: { color: '#eaeef1' },
+                },
+              }}
+              rootProps={{ 'data-testid': '6' }}
+            />
           </div>
-          {msg && <p className="info-msg">{msg}</p>}
-          <Link to={`/measure/${Number(date)}/edit`} className="btn dark mb3">Edit this measurement</Link>
-          <button type="button" onClick={handleRemoveMeasure} className="btn mb2 warn">Remove this measurement</button>
-          <Link to="/measures" className="btn">Back to all measurements</Link>
+          <div className="items__chart__comment">
+            {`Achievements rate: ${rateForChart} %`}
+          </div>
         </div>
       </div>
+      <div className="content">
+        <div className="items__list mb3">
+          {subjects.map((subject) => {
+            // eslint-disable-next-line max-len
+            const targetMeasure = sameDateMeasures.find((measure) => measure.subject_id === subject.id);
+            return (
+              <measureSubject
+                key={subject.id}
+                subject={subject}
+                result={targetMeasure ? targetMeasure.result : 0}
+                targetDate={date}
+              />
+            );
+          })}
+        </div>
+        {msg && <p className="info-msg">{msg}</p>}
+        <Link to={`/measure/${Number(date)}/edit`} className="btn dark mb3">Edit this measurement</Link>
+        <button type="button" onClick={handleRemoveMeasure} className="btn mb2 warn">Remove this measurement</button>
+        <Link to="/measures" className="btn">Back to all measurements</Link>
+      </div>
+    </div>
   ) : <Redirect to="/" />;
 };
 

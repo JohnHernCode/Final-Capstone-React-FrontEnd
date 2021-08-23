@@ -11,29 +11,29 @@ const usersForm = ({ handleSubmit, btnName }) => {
   };
 
   return (
-      <div>
-        <form onSubmit={onSubmit} className="form">
-          <div className="form__group">
-            <input
-                type="text"
-                name="username"
-                placeholder="Enter your username"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-            />
-          </div>
-          <div className="form__group">
-            <input
-                type="password"
-                name="password"
-                placeholder="Enter your password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-            />
-          </div>
-          <button type="submit" className="btn mb3">{btnName}</button>
-        </form>
-      </div>
+    <div>
+      <form onSubmit={onSubmit} className="form">
+        <div className="form__group">
+          <input
+            type="text"
+            name="username"
+            placeholder="Enter your username"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+          />
+        </div>
+        <div className="form__group">
+          <input
+            type="password"
+            name="password"
+            placeholder="Enter your password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+        </div>
+        <button type="submit" className="btn mb3">{btnName}</button>
+      </form>
+    </div>
   );
 };
 

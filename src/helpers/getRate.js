@@ -3,12 +3,12 @@ import { moment } from '../api/api';
 const calcAvgAchieveRate = (cMeasureDates, measures) => {
   const arrForAchieveRateForMonth = [];
   cMeasureDates.forEach((measureDate) => {
-    const sameDateMeasures = measures.filter((measure) => measures.date === measureDate);
+    const sameDateMeasures = measures.filter((measure) => measure.date === measureDate);
     const totalRatesForDay = sameDateMeasures
-        .reduce((acm, rec) => {
-          const rate = rec.result / rec.target;
-          return acm + ((rate >= 1 ? 1 : rate) * 100);
-        }, 0);
+      .reduce((acm, rec) => {
+        const rate = rec.result / rec.target;
+        return acm + ((rate >= 1 ? 1 : rate) * 100);
+      }, 0);
     const achieveRateForDay = totalRatesForDay / sameDateMeasures.length;
     arrForAchieveRateForMonth.push(achieveRateForDay);
   });
@@ -21,10 +21,10 @@ const getAvgAchieveRateForMonth = (measureDates, measures) => {
   const today = moment();
   const oneMonthAgo = moment().subtract(1, 'months');
   const cMeasureDates = measureDates
-      .filter((measure) => {
-        const targetMeasure = moment(Number(measure));
-        return targetMeasure.isSameOrBefore(today) && targetMeasure.isAfter(oneMonthAgo);
-      });
+    .filter((measure) => {
+      const targetMeasure = moment(Number(measure));
+      return targetMeasure.isSameOrBefore(today) && targetMeasure.isAfter(oneMonthAgo);
+    });
   return calcAvgAchieveRate(cMeasureDates, measures);
 };
 
@@ -33,10 +33,10 @@ const getAvgAchieveRateForThisWeek = (measureDates, measures) => {
   const today = moment();
   const oneWeekAgo = moment().subtract(1, 'weeks');
   const cMeasureDates = measureDates
-      .filter((measure) => {
-        const targetMeasure = moment(Number(measure));
-        return targetMeasure.isSameOrBefore(today) && targetMeasure.isAfter(oneWeekAgo);
-      });
+    .filter((measure) => {
+      const targetMeasure = moment(Number(measure));
+      return targetMeasure.isSameOrBefore(today) && targetMeasure.isAfter(oneWeekAgo);
+    });
   return calcAvgAchieveRate(cMeasureDates, measures);
 };
 
@@ -45,10 +45,10 @@ const getAvgAchieveRateForLastWeek = (measureDates, measures) => {
   const oneWeekAgo = moment().subtract(1, 'weeks');
   const twoWeeksAgo = moment().subtract(2, 'weeks');
   const cMeasureDates = measureDates
-      .filter((measure) => {
-        const targetMeasure = moment(Number(measure));
-        return targetMeasure.isSameOrBefore(oneWeekAgo) && targetMeasure.isAfter(twoWeeksAgo);
-      });
+    .filter((measure) => {
+      const targetMeasure = moment(Number(measure));
+      return targetMeasure.isSameOrBefore(oneWeekAgo) && targetMeasure.isAfter(twoWeeksAgo);
+    });
   return calcAvgAchieveRate(cMeasureDates, measures);
 };
 
@@ -57,10 +57,10 @@ const getAvgAchieveRateForTwoWeeksBefore = (measureDates, measures) => {
   const twoWeeksAgo = moment().subtract(2, 'weeks');
   const threeWeeksAgo = moment().subtract(3, 'weeks');
   const cMeasureDates = measureDates
-      .filter((measure) => {
-        const targetMeasure = moment(Number(measure));
-        return targetMeasure.isSameOrBefore(twoWeeksAgo) && targetMeasure.isAfter(threeWeeksAgo);
-      });
+    .filter((measure) => {
+      const targetMeasure = moment(Number(measure));
+      return targetMeasure.isSameOrBefore(twoWeeksAgo) && targetMeasure.isAfter(threeWeeksAgo);
+    });
   return calcAvgAchieveRate(cMeasureDates, measures);
 };
 
@@ -69,10 +69,10 @@ const getAvgAchieveRateForThreeWeeksBefore = (measureDates, measures) => {
   const threeWeeksAgo = moment().subtract(3, 'weeks');
   const oneMonthAgo = moment().subtract(1, 'months');
   const cMeasureDates = measureDates
-      .filter((measure) => {
-        const targetMeasure = moment(Number(measure));
-        return targetMeasure.isSameOrBefore(threeWeeksAgo) && targetMeasure.isAfter(oneMonthAgo);
-      });
+    .filter((measure) => {
+      const targetMeasure = moment(Number(measure));
+      return targetMeasure.isSameOrBefore(threeWeeksAgo) && targetMeasure.isAfter(oneMonthAgo);
+    });
   return calcAvgAchieveRate(cMeasureDates, measures);
 };
 
@@ -81,10 +81,10 @@ const getAvgAchieveRateForLastMonth = (measureDates, measures) => {
   const oneMonthAgo = moment().subtract(1, 'months');
   const twoMonthsAgo = moment().subtract(2, 'months');
   const cMeasureDates = measureDates
-      .filter((measure) => {
-        const targetMeasure = moment(Number(measure));
-        return targetMeasure.isSameOrBefore(oneMonthAgo) && targetMeasure.isAfter(twoMonthsAgo);
-      });
+    .filter((measure) => {
+      const targetMeasure = moment(Number(measure));
+      return targetMeasure.isSameOrBefore(oneMonthAgo) && targetMeasure.isAfter(twoMonthsAgo);
+    });
   return calcAvgAchieveRate(cMeasureDates, measures);
 };
 
