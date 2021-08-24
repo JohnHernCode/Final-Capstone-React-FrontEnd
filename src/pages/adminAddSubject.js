@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { Link, Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import adminSubjectForm from '../components/adminSubjectForm';
+import AdminSubjectForm from '../components/adminSubjectForm';
 import { addNewSubject } from '../helpers/restSubjects';
 
-const adminAddSubject = ({ history, adminStatus, loginUser }) => {
+const AdminAddSubject = ({ history, adminStatus, loginUser }) => {
   const [error, setError] = useState('');
 
   const runAddNewSubject = async (title, unit, icon, target) => {
@@ -32,7 +32,7 @@ const adminAddSubject = ({ history, adminStatus, loginUser }) => {
       </h1>
       <div className="content">
         {error && <p className="error-msg">{error}</p>}
-        <adminSubjectForm handleSubmit={handleSubmit} />
+        <AdminSubjectForm handleSubmit={handleSubmit} />
         <Link to="/admin" className="btn">Back to Subject List</Link>
       </div>
     </div>
@@ -46,15 +46,15 @@ const mapStateToProps = (state, props) => ({
   loginUser: state.user.logIn,
 });
 
-adminAddSubject.propTypes = {
+AdminAddSubject.propTypes = {
   history: PropTypes.instanceOf(Object),
   adminStatus: PropTypes.bool,
   loginUser: PropTypes.bool.isRequired,
 };
 
-adminAddSubject.defaultProps = {
+AdminAddSubject.defaultProps = {
   history: null,
   adminStatus: false,
 };
 
-export default connect(mapStateToProps)(adminAddSubject);
+export default connect(mapStateToProps)(AdminAddSubject);

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
-const usersForm = ({ handleSubmit, btnName }) => {
+const UsersForm = ({ handleSubmit, btnName }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
@@ -37,13 +37,13 @@ const usersForm = ({ handleSubmit, btnName }) => {
   );
 };
 
-usersForm.propTypes = {
+UsersForm.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
   btnName: PropTypes.string,
 };
 
-usersForm.defaultProps = {
+UsersForm.defaultProps = {
   btnName: 'Save',
 };
 
-export default usersForm;
+export default UsersForm;

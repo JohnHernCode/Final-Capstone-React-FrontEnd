@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import pluralize from 'pluralize';
 
-const measureSubject = ({ subject, result, targetDate }) => {
+const MeasureSubject = ({ subject, result, targetDate }) => {
   const {
     icon, unit, title, target,
   } = subject;
@@ -29,16 +29,16 @@ const measureSubject = ({ subject, result, targetDate }) => {
   );
 };
 
-measureSubject.propTypes = {
+MeasureSubject.propTypes = {
   subject: PropTypes.instanceOf(Object),
   result: PropTypes.number,
   targetDate: PropTypes.number,
 };
 
-measureSubject.defaultProps = {
+MeasureSubject.defaultProps = {
   subject: {},
   result: 0,
   targetDate: 0,
 };
 
-export default measureSubject;
+export default MeasureSubject;

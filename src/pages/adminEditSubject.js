@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { Link, Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import adminSubjectForm from '../components/adminSubjectForm';
+import AdminSubjectForm from '../components/adminSubjectForm';
 import { updateSubject, removeSubjectFromDB } from '../helpers/restSubjects';
 
-const adminEditSubject = ({
+const AdminEditSubject = ({
   subject, history, adminStatus, loginUser,
 }) => {
   const [error, setError] = useState('');
@@ -52,7 +52,7 @@ const adminEditSubject = ({
       </h1>
       <div className="content">
         {error && <p className="error-msg">{error}</p>}
-        <adminSubjectForm
+        <AdminSubjectForm
           id={id}
           title={title}
           unit={unit}
@@ -74,17 +74,17 @@ const mapStateToProps = (state, props) => ({
   loginUser: state.user.logIn,
 });
 
-adminEditSubject.propTypes = {
+AdminEditSubject.propTypes = {
   subject: PropTypes.instanceOf(Object),
   history: PropTypes.instanceOf(Object),
   adminStatus: PropTypes.bool,
   loginUser: PropTypes.bool.isRequired,
 };
 
-adminEditSubject.defaultProps = {
+AdminEditSubject.defaultProps = {
   subject: {},
   history: null,
   adminStatus: false,
 };
 
-export default connect(mapStateToProps)(adminEditSubject);
+export default connect(mapStateToProps)(AdminEditSubject);

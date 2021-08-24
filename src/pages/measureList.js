@@ -3,14 +3,14 @@ import { connect } from 'react-redux';
 import { Link, Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { moment } from '../api/api';
-import measureListSubject from '../components/measureListSubject';
+import MeasureListSubject from '../components/measureListSubject';
 import { getMeasures } from '../helpers/restMeasures';
 import { getSubjects } from '../helpers/restSubjects';
 import { addMeasures } from '../actions/measures';
 import addSubjects from '../actions/subjects';
 import { addMeasureDates } from '../actions/measureDates';
 
-const measureList = ({
+const MeasureList = ({
   addMeasures, loginUser, addMeasureDates, measureDates, measures, subjects, addSubjects,
 }) => {
   const [error, setError] = useState('');
@@ -62,7 +62,7 @@ const measureList = ({
             const sameDateMeasures = measures.filter((measure) => moment(Number(measure.date)).isSame(moment(milSec), 'day'));
 
             return (
-              <measureListSubject
+              <MeasureListSubject
                 milSec={milSec}
                 key={milSec}
                 sameDateMeasures={sameDateMeasures}
@@ -90,7 +90,7 @@ const mapStateToProps = (state) => ({
   loginUser: state.user.logIn,
 });
 
-measureList.propTypes = {
+MeasureList.propTypes = {
   addMeasures: PropTypes.func,
   addMeasureDates: PropTypes.func,
   addSubjects: PropTypes.func,
@@ -100,13 +100,13 @@ measureList.propTypes = {
   subjects: PropTypes.instanceOf(Array),
 };
 
-measureList.defaultProps = {
-  addTracks: null,
-  addTrackDates: null,
-  addItems: null,
-  trackDates: [],
-  tracks: [],
-  items: [],
+MeasureList.defaultProps = {
+  addMeasures: null,
+  addMeasureDates: null,
+  addSubjects: null,
+  measureDates: [],
+  measures: [],
+  subjects: [],
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(measureList);
+export default connect(mapStateToProps, mapDispatchToProps)(MeasureList);

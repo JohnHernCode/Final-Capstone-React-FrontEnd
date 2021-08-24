@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import image from '../images/404.jpg';
 
-const notFound = () => (
+const NotFound = () => (
   <div className="notfound">
     <h1 className="heading">404 Not Found</h1>
     <div className="content">
@@ -11,4 +11,4 @@ const notFound = () => (
     </div>
   </div>
 );
-export default notFound;
+export default NotFound;

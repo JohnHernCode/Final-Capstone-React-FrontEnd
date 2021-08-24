@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
-const adminSubjectForm = ({
+const AdminSubjectForm = ({
   title, unit, icon, target, handleSubmit,
 }) => {
   const [error, setError] = useState('');
@@ -126,7 +126,7 @@ const adminSubjectForm = ({
   );
 };
 
-adminSubjectForm.propTypes = {
+AdminSubjectForm.propTypes = {
   title: PropTypes.string,
   unit: PropTypes.string,
   icon: PropTypes.string,
@@ -134,7 +134,7 @@ adminSubjectForm.propTypes = {
   handleSubmit: PropTypes.func,
 };
 
-adminSubjectForm.defaultProps = {
+AdminSubjectForm.defaultProps = {
   title: '',
   unit: '',
   icon: '',
@@ -142,4 +142,4 @@ adminSubjectForm.defaultProps = {
   handleSubmit: null,
 };
 
-export default adminSubjectForm;
+export default AdminSubjectForm;

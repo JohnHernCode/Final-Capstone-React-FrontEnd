@@ -7,7 +7,7 @@ import { BiChevronRightCircle } from 'react-icons/bi';
 import { moment } from '../api/api';
 import calcAchieveTotalRate from '../helpers/calcAchieveTotalRate';
 
-const measureListSubject = ({ milSec, sameDateMeasures, subjectNum }) => {
+const MeasureListSubject = ({ milSec, sameDateMeasures, subjectNum }) => {
   const [dateSign, setDateSign] = useState('');
 
   const checkDateSign = () => {
@@ -82,16 +82,16 @@ const measureListSubject = ({ milSec, sameDateMeasures, subjectNum }) => {
   );
 };
 
-measureListSubject.propTypes = {
+MeasureListSubject.propTypes = {
   milSec: PropTypes.number,
   sameDateMeasures: PropTypes.instanceOf(Array),
   subjectNum: PropTypes.number,
 };
 
-measureListSubject.defaultProps = {
+MeasureListSubject.defaultProps = {
   milSec: 0,
   sameDateMeasures: [],
   subjectNum: 0,
 };
 
-export default measureListSubject;
+export default MeasureListSubject;

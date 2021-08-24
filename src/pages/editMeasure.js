@@ -2,13 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Redirect, Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import measureForm from '../components/measureForm';
+import MeasureForm from '../components/measureForm';
 import { updateMeasure, addNewMeasure } from '../helpers/restMeasures';
 import { getSubjects } from '../helpers/restSubjects';
 import addSubjects from '../actions/subjects';
 import getSubjectTitles from '../helpers/getSubjectTitles';
 
-const editMeasure = ({
+const EditMeasure = ({
   loginUser, history, subjects, addSubjects, sameDateMeasures, targetDate,
 }) => {
   const [error, setError] = useState('');
@@ -76,7 +76,7 @@ const editMeasure = ({
       <h1 className="heading">Edit Measurement</h1>
       <div className="content">
         {error && <p className="error-msg">{error}</p>}
-        <measureForm
+        <MeasureForm
           handleSubmit={handleSubmit}
           subjectTitles={subjectTitles}
           targetDate={targetDate}
@@ -99,7 +99,7 @@ const mapDispatchToProps = (dispatch) => ({
   addSubjects: (subjects) => dispatch(addSubjects(subjects)),
 });
 
-editMeasure.propTypes = {
+EditMeasure.propTypes = {
   subjects: PropTypes.instanceOf(Array),
   loginUser: PropTypes.bool.isRequired,
   history: PropTypes.instanceOf(Object),
@@ -108,11 +108,11 @@ editMeasure.propTypes = {
   targetDate: PropTypes.number,
 };
 
-editMeasure.defaultProps = {
+EditMeasure.defaultProps = {
   subjects: [],
   history: null,
   addSubjects: null,
   sameDateMeasures: [],
   targetDate: null,
 };
-export default connect(mapStateToProps, mapDispatchToProps)(editMeasure);
+export default connect(mapStateToProps, mapDispatchToProps)(EditMeasure);

@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import pluralize from 'pluralize';
 
-const adminSubjectList = ({ subjects }) => (
+const AdminSubjectList = ({ subjects }) => (
   <div className="admin__list">
     {subjects.map((subject) => {
       const {
@@ -24,12 +24,12 @@ const adminSubjectList = ({ subjects }) => (
   </div>
 );
 
-adminSubjectList.propTypes = {
+AdminSubjectList.propTypes = {
   subjects: PropTypes.instanceOf(Array),
 };
 
-adminSubjectList.defaultProps = {
+AdminSubjectList.defaultProps = {
   subjects: [],
 };
 
-export default adminSubjectList;
+export default AdminSubjectList;

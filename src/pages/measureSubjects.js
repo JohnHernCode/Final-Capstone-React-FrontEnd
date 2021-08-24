@@ -9,11 +9,11 @@ import { getSubjects } from '../helpers/restSubjects';
 import { addMeasures } from '../actions/measures';
 import { addMeasureDates } from '../actions/measureDates';
 import { removeMeasureFromDB, getMeasures } from '../helpers/restMeasures';
-import measureSubject from '../components/measureSubject';
+import MeasureSubject from '../components/measureSubject';
 import addSubjects from '../actions/subjects';
 import calcAchieveTotalRate from '../helpers/calcAchieveTotalRate';
 
-const measureSubjects = ({
+const MeasureSubjects = ({
   sameDateMeasures,
   subjects,
   loginUser,
@@ -135,7 +135,7 @@ const measureSubjects = ({
             // eslint-disable-next-line max-len
             const targetMeasure = sameDateMeasures.find((measure) => measure.subject_id === subject.id);
             return (
-              <measureSubject
+              <MeasureSubject
                 key={subject.id}
                 subject={subject}
                 result={targetMeasure ? targetMeasure.result : 0}
@@ -168,7 +168,7 @@ const mapDispatchToProps = (dispatch) => ({
   addMeasureDates: (measureDates) => dispatch(addMeasureDates(measureDates)),
 });
 
-measureSubjects.propTypes = {
+MeasureSubjects.propTypes = {
   addMeasures: PropTypes.func,
   addMeasureDates: PropTypes.func,
   history: PropTypes.instanceOf(Object),
@@ -181,7 +181,7 @@ measureSubjects.propTypes = {
   currentIndex: PropTypes.number,
 };
 
-measureSubjects.defaultProps = {
+MeasureSubjects.defaultProps = {
   addMeasures: null,
   addMeasureDates: null,
   history: null,
@@ -193,4 +193,4 @@ measureSubjects.defaultProps = {
   currentIndex: -1,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(measureSubjects);
+export default connect(mapStateToProps, mapDispatchToProps)(MeasureSubjects);

@@ -5,7 +5,7 @@ import { logIn, setUser } from '../actions/user';
 import { removeAllMeasures } from '../actions/measures';
 import { removeAllMeasureDates } from '../actions/measureDates';
 
-const logout = ({
+const Logout = ({
   logIn, removeAllMeasures, setUser, removeAllMeasureDates,
 }) => {
   const onLogout = () => {
@@ -28,18 +28,18 @@ const mapDispatchToProps = (dispatch) => ({
   removeAllMeasureDates: () => dispatch(removeAllMeasureDates()),
 });
 
-logout.propTypes = {
+Logout.propTypes = {
   logIn: PropTypes.func,
   removeAllMeasures: PropTypes.func,
   removeAllMeasureDates: PropTypes.func,
   setUser: PropTypes.func,
 };
 
-logout.defaultProps = {
+Logout.defaultProps = {
   logIn: null,
   removeAllMeasures: null,
   removeAllMeasureDates: null,
   setUser: null,
 };
 
-export default connect(undefined, mapDispatchToProps)(logout);
+export default connect(undefined, mapDispatchToProps)(Logout);

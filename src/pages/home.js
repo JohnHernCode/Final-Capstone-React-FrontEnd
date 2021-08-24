@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import logout from '../components/logoutState';
+import Logout from '../components/logoutState';
 
 const Home = ({ history, loginUser }) => (
   <div>
@@ -11,10 +11,10 @@ const Home = ({ history, loginUser }) => (
       <h2 className="home__heading">
         Welcome to Track it App!
       </h2>
-      {loginUser ? <logout history={history} /> : (
+      {loginUser ? <Logout history={history} /> : (
         <div>
           <Link to="/login" className="btn mb2 dark">Login</Link>
-          <Link to="/signup" className="btn mb2 medium">Signup</Link>
+          <Link to="/Signup" className="btn mb2 medium">Signup</Link>
         </div>
       )}
 

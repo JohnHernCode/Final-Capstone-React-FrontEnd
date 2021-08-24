@@ -7,7 +7,7 @@ import { GrContact, GrSettingsOption } from 'react-icons/gr';
 import { AiFillGithub } from 'react-icons/ai';
 import thumb from '../images/default-icon.jpg';
 
-const more = ({ loginUser, userName }) => (loginUser ? (
+const More = ({ loginUser, userName }) => (loginUser ? (
   <div className="more">
     <h1 className="heading">More</h1>
     <div className="more__content">
@@ -55,13 +55,13 @@ const mapStateToProps = (state) => ({
   userName: state.user.user.username,
 });
 
-more.propTypes = {
+More.propTypes = {
   loginUser: PropTypes.bool.isRequired,
   userName: PropTypes.string,
 };
 
-more.defaultProps = {
+More.defaultProps = {
   userName: 'Anonymous',
 };
 
-export default connect(mapStateToProps)(more);
+export default connect(mapStateToProps)(More);

@@ -3,41 +3,41 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Header from '../components/header';
 import Footer from '../components/footer';
-import home from '../pages/home';
-import notFound from '../pages/404';
-import loginPage from '../pages/loginPage';
-import signupPage from '../pages/signupPage';
+import Home from '../pages/home';
+import NotFound from '../pages/404';
+import LoginPage from '../pages/loginPage';
+import SignupPage from '../pages/signupPage';
 import addMeasure from '../pages/addMeasure';
-import editMeasure from '../pages/editMeasure';
-import measureList from '../pages/measureList';
-import measureSubjects from '../pages/measureSubjects';
-import progress from '../pages/progress';
-import more from '../pages/more';
-import adminHome from '../pages/adminHome';
-import adminAddSubject from '../pages/adminAddSubject';
-import adminEditSubject from '../pages/adminEditSubject';
-import loginState from '../components/loginState';
+import EditMeasure from '../pages/editMeasure';
+import MeasureList from '../pages/measureList';
+import MeasureSubjects from '../pages/measureSubjects';
+import More from '../pages/more';
+import AdminHome from '../pages/adminHome';
+import AdminAddSubject from '../pages/adminAddSubject';
+import AdminEditSubject from '../pages/adminEditSubject';
+import LoginState from '../components/LoginState';
+import Progress from '../pages/progress';
 
 const AppRoutes = () => (
   <BrowserRouter>
     <div className="whole-container">
-      <loginState />
+      <LoginState />
       <Header />
       <div className="container">
         <Switch>
-          <Route exact path="/" component={home} />
-          <Route exact path="/login" render={(props) => (<loginPage history={props.history} />)} />
-          <Route exact path="/signup" render={(props) => (<signupPage history={props.history} />)} />
+          <Route exact path="/" component={Home} />
+          <Route exact path="/login" render={(props) => (<LoginPage history={props.history} />)} />
+          <Route exact path="/Signup" render={(props) => (<SignupPage history={props.history} />)} />
           <Route exact path="/measure/create" render={(props) => (<addMeasure history={props.history} />)} />
-          <Route exact path="/measures/:id" component={measureSubjects} />
-          <Route exact path="/measure/:id/edit" component={editMeasure} />
-          <Route exact path="/measures" component={measureList} />
-          <Route exact path="/progress" component={progress} />
-          <Route exact path="/more" component={more} />
-          <Route exact path="/admin" component={adminHome} />
-          <Route exact path="/admin/item/create" component={adminAddSubject} />
-          <Route exact path="/admin/item/:id" component={adminEditSubject} />
-          <Route component={notFound()} />
+          <Route exact path="/measures/:id" component={MeasureSubjects} />
+          <Route exact path="/measure/:id/edit" component={EditMeasure} />
+          <Route exact path="/measures" component={MeasureList} />
+          <Route exact path="/progress" component={Progress} />
+          <Route exact path="/more" component={More} />
+          <Route exact path="/admin" component={AdminHome} />
+          <Route exact path="/admin/item/create" component={AdminAddSubject} />
+          <Route exact path="/admin/item/:id" component={AdminEditSubject} />
+          <Route component={NotFound} />
         </Switch>
       </div>
       <Footer />

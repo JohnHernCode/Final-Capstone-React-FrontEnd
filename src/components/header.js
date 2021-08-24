@@ -31,7 +31,7 @@ const Header = ({ adminUser, whileLoggedIn }) => {
         {!whileLoggedIn && (
           <>
             <NavLink exact to="/login" className="header__link" onClick={closeToggleMenu}>Login</NavLink>
-            <NavLink exact to="/signup" className="header__link" onClick={closeToggleMenu}>Signup</NavLink>
+            <NavLink exact to="/Signup" className="header__link" onClick={closeToggleMenu}>Signup</NavLink>
           </>
         )}
 

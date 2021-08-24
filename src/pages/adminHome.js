@@ -2,11 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Link, Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import subjectList from '../components/adminSubjectList';
+import AdminSubjectList from '../components/adminSubjectList';
 import addSubjects from '../actions/subjects';
 import { getSubjects } from '../helpers/restSubjects';
 
-const adminHome = ({
+const AdminHome = ({
   addSubjects, subjects, adminStatus, loginUser,
 }) => {
   const [error, setError] = useState('');
@@ -40,7 +40,7 @@ const adminHome = ({
       <div className="content">
         {error && <p className="error-msg">{error}</p>}
         <div className="admin__subjects mb3">
-          {subjects.length > 0 && <subjectList subjects={subjects} />}
+          {subjects.length > 0 && <AdminSubjectList subjects={subjects} />}
         </div>
         <Link to="/admin/subject/create" className="btn dark">Add Subject</Link>
       </div>
@@ -58,16 +58,16 @@ const mapDispatchToProps = (dispatch) => ({
   addSubjects: (subjects) => dispatch(addSubjects(subjects)),
 });
 
-adminHome.propTypes = {
+AdminHome.propTypes = {
   addSubjects: PropTypes.func.isRequired,
   subjects: PropTypes.instanceOf(Object),
   adminStatus: PropTypes.bool,
   loginUser: PropTypes.bool.isRequired,
 };
 
-adminHome.defaultProps = {
+AdminHome.defaultProps = {
   subjects: [],
   adminStatus: false,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(adminHome);
+export default connect(mapStateToProps, mapDispatchToProps)(AdminHome);

@@ -2,11 +2,11 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { Link, Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import usersForm from '../components/userForm';
-import { loggedIn } from '../helpers/authUser';
+import UsersForm from '../components/userForm';
+import { loggedIn } from '../api/userAuth';
 import { logIn, setUser } from '../actions/user';
 
-const loginPage = ({
+const LoginPage = ({
   history, setUser, logIn, loginUser,
 }) => {
   const [errors, setErrors] = useState([]);
@@ -41,7 +41,7 @@ const loginPage = ({
       <div className="content">
         {errors && errors.map((error) => (<p key={error}>{error}</p>))}
         {msg && <p className="info-msg">{msg}</p>}
-        <usersForm handleSubmit={handleSubmit} btnName="Login" />
+        <UsersForm handleSubmit={handleSubmit} btnName="Login" />
         <Link to="/" className="btn">Go back to Home</Link>
       </div>
     </div>
@@ -58,16 +58,16 @@ const mapDispatchToProps = (dispatch) => ({
   logIn: (status) => dispatch(logIn(status)),
 });
 
-loginPage.propTypes = {
+LoginPage.propTypes = {
   history: PropTypes.instanceOf(Object),
   logIn: PropTypes.func.isRequired,
   setUser: PropTypes.func,
   loginUser: PropTypes.bool.isRequired,
 };
 
-loginPage.defaultProps = {
+LoginPage.defaultProps = {
   history: null,
   setUser: null,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(loginPage);
+export default connect(mapStateToProps, mapDispatchToProps)(LoginPage);

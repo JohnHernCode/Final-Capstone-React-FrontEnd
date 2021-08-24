@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import pluralize from 'pluralize';
 import { moment } from '../api/api';
 
-const measureForm = ({
+const MeasureForm = ({
   subjects, handleSubmit, subjectTitles, targetDate,
 }) => {
   const [error, setError] = useState('');
@@ -67,18 +67,18 @@ const mapStateToProps = (state) => ({
   subjects: state.subjects,
 });
 
-measureForm.propTypes = {
+MeasureForm.propTypes = {
   subjects: PropTypes.instanceOf(Object),
   handleSubmit: PropTypes.func,
   subjectTitles: PropTypes.instanceOf(Object),
   targetDate: PropTypes.number,
 };
 
-measureForm.defaultProps = {
+MeasureForm.defaultProps = {
   subjects: [],
   handleSubmit: null,
   subjectTitles: {},
   targetDate: 0,
 };
 
-export default connect(mapStateToProps)(measureForm);
+export default connect(mapStateToProps)(MeasureForm);

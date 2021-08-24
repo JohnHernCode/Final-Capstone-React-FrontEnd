@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Redirect, Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import measureForm from '../components/measureForm';
+import MeasureForm from '../components/measureForm';
 import { addNewMeasure } from '../helpers/restMeasures';
 import { getSubjects } from '../helpers/restSubjects';
 import addSubjects from '../actions/subjects';
@@ -65,7 +65,7 @@ const AddMeasure = ({
       <h1 className="heading">Add Measurement</h1>
       <div className="content">
         <div className="content__msg">Welcome back. Let&apos;s add your measurement for today!</div>
-        <measureForm handleSubmit={handleSubmit} subjectTitles={subjectTitles} targetDate={null} />
+        <MeasureForm handleSubmit={handleSubmit} subjectTitles={subjectTitles} targetDate={null} />
         {msg && <p className="info-msg">{msg}</p>}
         {error && <p className="error-msg">{error}</p>}
         <Link to="/measures" className="btn">Cancel & Back to Measurement List</Link>
