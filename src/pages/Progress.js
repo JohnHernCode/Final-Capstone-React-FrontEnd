@@ -5,41 +5,41 @@ import PropTypes from 'prop-types';
 import Chart from 'react-google-charts';
 import pluralize from 'pluralize';
 import getAvgRate from '../helpers/getRate';
-import getSubjectTotals from '../helpers/getSubjectTotals';
-import { getMeasures } from '../helpers/restMeasures';
-import { addMeasures } from '../actions/measures';
-import { addMeasureDates } from '../actions/measureDates';
-import { getSubjects } from '../helpers/restSubjects';
-import addSubjects from '../actions/subjects';
+import getItemTotals from '../helpers/getItemTotals';
+import { getTracks } from '../helpers/restTracks';
+import { getItems } from '../helpers/restItems';
+import { addTracks } from '../actions/tracks';
+import { addTrackDates } from '../actions/trackDates';
+import addItems from '../actions/items';
 
 const Progress = ({
-  addMeasures, loginUser, addMeasureDates, measureDates, measures, subjects, addSubjects,
+  addTracks, loginUser, addTrackDates, trackDates, tracks, items, addItems,
 }) => {
   const [error, setError] = useState('');
 
-  const runGetSubjects = async () => {
+  const runGetItems = async () => {
     try {
-      const response = await getSubjects();
+      const response = await getItems();
       if (response.length > 0) {
         setError('');
-        addSubjects(response);
+        addItems(response);
       } else {
-        setError('No Subjects');
+        setError('No Items');
       }
     } catch {
-      setError('Unable to fetch the subject data');
+      setError('Unable to fetch the item data');
     }
   };
 
-  const runGetMeasures = async () => {
+  const runGetTracks = async () => {
     try {
-      const response = await getMeasures();
+      const response = await getTracks();
       if (response) {
         setError('');
-        addMeasures(response.measures);
-        addMeasureDates(response.measure_dates);
+        addTracks(response.records);
+        addTrackDates(response.record_dates);
       } else {
-        setError('No Measures');
+        setError('No Tracks');
       }
     } catch {
       setError('Unable to fetch the data');
@@ -48,12 +48,12 @@ const Progress = ({
 
   useEffect(() => {
     if (loginUser) {
-      runGetMeasures();
-      runGetSubjects();
+      runGetTracks();
+      runGetItems();
     }
   }, []);
 
-  const arMonth = getAvgRate(measureDates, measures, 'THIS_MONTH') || 0;
+  const arMonth = getAvgRate(trackDates, tracks, 'THIS_MONTH') || 0;
   const percentForChart = arMonth >= 100 ? 100 : arMonth;
   const leftPercentForChart = 100 - percentForChart;
   return loginUser ? (
@@ -95,7 +95,7 @@ const Progress = ({
         </div>
         <div className="progress__graph">
           <div className="progress__title">
-            Weekly Achievements Rate (%)
+            Weekly Achivements Rate (%)
           </div>
           <div className="progress__graph__container">
             <Chart
@@ -105,30 +105,30 @@ const Progress = ({
               loader={<div>Loading Chart</div>}
               data={[
                 ['', ''],
-                ['This week', getAvgRate(measureDates, measures, 'THIS_WEEK')],
-                ['Last week', getAvgRate(measureDates, measures, 'LAST_WEEK')],
-                ['2 weeks ago', getAvgRate(measureDates, measures, 'TWO_WEEKS_BEFORE')],
-                ['3 weeks ago', getAvgRate(measureDates, measures, 'THREE_WEEKS_BEFORE')],
-                ['Last month', getAvgRate(measureDates, measures, 'LAST_MONTH')],
+                ['This week', getAvgRate(trackDates, tracks, 'THIS_WEEK')],
+                ['Last week', getAvgRate(trackDates, tracks, 'LAST_WEEK')],
+                ['2 weeks ago', getAvgRate(trackDates, tracks, 'TWO_WEEKS_BEFORE')],
+                ['3 weeks ago', getAvgRate(trackDates, tracks, 'THREE_WEEKS_BEFORE')],
+                ['Last month', getAvgRate(trackDates, tracks, 'LAST_MONTH')],
               ]}
               rootProps={{ 'data-testid': '2' }}
             />
           </div>
         </div>
-        <div className="progress__subjects mb3">
-          {subjects.map((subject) => {
-            const subjectTotalResult = getSubjectTotals(subject, measures);
-            const formattedSubjectTotal = subjectTotalResult.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+        <div className="progress__items mb3">
+          {items.map((item) => {
+            const itemTotalResult = getItemTotals(item, tracks);
+            const formattedItemTotal = itemTotalResult.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
             return (
-              <div className="progress__subject" key={subject.id}>
-                <div className="progress__subject__title">
-                  {subject.title}
+              <div className="progress__item" key={item.id}>
+                <div className="progress__item__title">
+                  {item.title}
                 </div>
-                <div className="progress__subject__num">
-                  {formattedSubjectTotal}
+                <div className="progress__item__num">
+                  {formattedItemTotal}
                 </div>
-                <div className="progress__subject__unit">
-                  {pluralize(subject.unit, subjectTotalResult)}
+                <div className="progress__item__unit">
+                  {pluralize(item.unit, itemTotalResult)}
                 </div>
               </div>
             );
@@ -141,36 +141,35 @@ const Progress = ({
 };
 
 const mapStateToProps = (state) => ({
-
-  subjects: state.subjects,
-  measures: state.measures,
-  measureDates: state.measureDates,
+  items: state.items,
+  tracks: state.tracks,
+  trackDates: state.trackDates,
   loginUser: state.user.logIn,
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  addSubjects: (subjects) => dispatch(addSubjects(subjects)),
-  addMeasures: (measures) => dispatch(addMeasures(measures)),
-  addMeasureDates: (measureDates) => dispatch(addMeasureDates(measureDates)),
+  addItems: (items) => dispatch(addItems(items)),
+  addTracks: (tracks) => dispatch(addTracks(tracks)),
+  addTrackDates: (trackDates) => dispatch(addTrackDates(trackDates)),
 });
 
 Progress.propTypes = {
-  subjects: PropTypes.instanceOf(Array),
-  addSubjects: PropTypes.func,
-  addMeasures: PropTypes.func,
-  addMeasureDates: PropTypes.func,
-  measureDates: PropTypes.instanceOf(Array),
+  items: PropTypes.instanceOf(Array),
+  addItems: PropTypes.func,
+  addTracks: PropTypes.func,
+  addTrackDates: PropTypes.func,
+  trackDates: PropTypes.instanceOf(Array),
   loginUser: PropTypes.bool.isRequired,
-  measures: PropTypes.instanceOf(Array),
+  tracks: PropTypes.instanceOf(Array),
 };
 
 Progress.defaultProps = {
-  subjects: [],
-  addMeasures: null,
-  addMeasureDates: null,
-  addSubjects: null,
-  measureDates: [],
-  measures: [],
+  items: [],
+  addTracks: null,
+  addTrackDates: null,
+  addItems: null,
+  trackDates: [],
+  tracks: [],
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Progress);

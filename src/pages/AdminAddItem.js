@@ -2,16 +2,16 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { Link, Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import AdminSubjectForm from '../components/adminSubjectForm';
-import { addNewSubject } from '../helpers/restSubjects';
+import AdminItemForm from '../components/AdminItemForm';
+import { addNewItem } from '../helpers/restItems';
 
-const AdminAddSubject = ({ history, adminStatus, loginUser }) => {
+const AdminAddItem = ({ history, adminStatus, loginUser }) => {
   const [error, setError] = useState('');
 
-  const runAddNewSubject = async (title, unit, icon, target) => {
+  const runAddNewItem = async (title, unit, icon, target) => {
     try {
       setError('');
-      await addNewSubject(title, unit, icon, target);
+      await addNewItem(title, unit, icon, target);
       history.push('/admin');
     } catch {
       setError('Unable to fetch the data');
@@ -21,40 +21,40 @@ const AdminAddSubject = ({ history, adminStatus, loginUser }) => {
   const handleSubmit = ({
     title, unit, icon, target,
   }) => {
-    runAddNewSubject(title, unit, icon, target);
+    runAddNewItem(title, unit, icon, target);
   };
 
   return adminStatus && loginUser ? (
     <div className="admin">
       <h1 className="heading">
-        Admin Add Subject
-        <span className="admin-icon">Admin</span>
+        Admin Add Item
+        <span className="admin-icon">admin</span>
       </h1>
       <div className="content">
         {error && <p className="error-msg">{error}</p>}
-        <AdminSubjectForm handleSubmit={handleSubmit} />
-        <Link to="/admin" className="btn">Back to Subject List</Link>
+        <AdminItemForm handleSubmit={handleSubmit} />
+        <Link to="/admin" className="btn">Back to Item List</Link>
       </div>
     </div>
   ) : <Redirect to="/" />;
 };
 
 const mapStateToProps = (state, props) => ({
-  subjects: state.subjects,
-  subject: state.subjects.find((subject) => subject.id === Number(props.match.params.id)),
+  items: state.items,
+  item: state.items.find((item) => item.id === Number(props.match.params.id)),
   adminStatus: state.user.user.admin,
   loginUser: state.user.logIn,
 });
 
-AdminAddSubject.propTypes = {
+AdminAddItem.propTypes = {
   history: PropTypes.instanceOf(Object),
   adminStatus: PropTypes.bool,
   loginUser: PropTypes.bool.isRequired,
 };
 
-AdminAddSubject.defaultProps = {
+AdminAddItem.defaultProps = {
   history: null,
   adminStatus: false,
 };
 
-export default connect(mapStateToProps)(AdminAddSubject);
+export default connect(mapStateToProps)(AdminAddItem);

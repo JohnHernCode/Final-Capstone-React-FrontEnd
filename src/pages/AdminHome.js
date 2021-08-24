@@ -2,23 +2,23 @@ import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Link, Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import AdminSubjectList from '../components/adminSubjectList';
-import addSubjects from '../actions/subjects';
-import { getSubjects } from '../helpers/restSubjects';
+import ItemList from '../components/AdminItemList';
+import addItems from '../actions/items';
+import { getItems } from '../helpers/restItems';
 
 const AdminHome = ({
-  addSubjects, subjects, adminStatus, loginUser,
+  addItems, items, adminStatus, loginUser,
 }) => {
   const [error, setError] = useState('');
 
-  const runGetSubjects = async () => {
+  const runGetItems = async () => {
     try {
-      const response = await getSubjects();
+      const response = await getItems();
       if (response.length > 0) {
         setError('');
-        addSubjects(response);
+        addItems(response);
       } else {
-        setError('No Subjects');
+        setError('No Items');
       }
     } catch {
       setError('Unable to fetch the data');
@@ -27,46 +27,46 @@ const AdminHome = ({
 
   useEffect(() => {
     if (adminStatus) {
-      runGetSubjects();
+      runGetItems();
     }
   }, []);
 
   return adminStatus && loginUser ? (
     <div className="admin">
       <h1 className="heading">
-        Subjects
-        <span className="admin-icon">Admin</span>
+        Items
+        <span className="admin-icon">admin</span>
       </h1>
       <div className="content">
         {error && <p className="error-msg">{error}</p>}
-        <div className="admin__subjects mb3">
-          {subjects.length > 0 && <AdminSubjectList subjects={subjects} />}
+        <div className="admin__items mb3">
+          {items.length > 0 && <ItemList items={items} />}
         </div>
-        <Link to="/admin/subject/create" className="btn dark">Add Subject</Link>
+        <Link to="/admin/item/create" className="btn dark">Add Item</Link>
       </div>
     </div>
   ) : <Redirect to="/" />;
 };
 
 const mapStateToProps = (state) => ({
-  subjects: state.subjects,
+  items: state.items,
   adminStatus: state.user.user.admin,
   loginUser: state.user.logIn,
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  addSubjects: (subjects) => dispatch(addSubjects(subjects)),
+  addItems: (items) => dispatch(addItems(items)),
 });
 
 AdminHome.propTypes = {
-  addSubjects: PropTypes.func.isRequired,
-  subjects: PropTypes.instanceOf(Object),
+  addItems: PropTypes.func.isRequired,
+  items: PropTypes.instanceOf(Object),
   adminStatus: PropTypes.bool,
   loginUser: PropTypes.bool.isRequired,
 };
 
 AdminHome.defaultProps = {
-  subjects: [],
+  items: [],
   adminStatus: false,
 };
 

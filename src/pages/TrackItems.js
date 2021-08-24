@@ -5,35 +5,35 @@ import { GrCaretPrevious, GrCaretNext } from 'react-icons/gr';
 import PropTypes from 'prop-types';
 import Chart from 'react-google-charts';
 import { moment } from '../api/api';
-import { getSubjects } from '../helpers/restSubjects';
-import { addMeasures } from '../actions/measures';
-import { addMeasureDates } from '../actions/measureDates';
-import { removeMeasureFromDB, getMeasures } from '../helpers/restMeasures';
-import MeasureSubject from '../components/measureSubject';
-import addSubjects from '../actions/subjects';
+import { getItems } from '../helpers/restItems';
+import { addTracks } from '../actions/tracks';
+import { addTrackDates } from '../actions/trackDates';
+import { removeTrackFromDB, getTracks } from '../helpers/restTracks';
+import TrackItem from '../components/TrackItem';
+import addItems from '../actions/items';
 import calcAchieveTotalRate from '../helpers/calcAchieveTotalRate';
 
-const MeasureSubjects = ({
-  sameDateMeasures,
-  subjects,
+const TrackItems = ({
+  sameDateTracks,
+  items,
   loginUser,
-  addSubjects,
+  addItems,
   date,
-  measureDates,
+  trackDates,
   currentIndex,
   history,
-  addMeasures,
-  addMeasureDates,
+  addTracks,
+  addTrackDates,
 }) => {
   const [error, setError] = useState('');
   const [msg, setMsg] = useState('');
 
-  const runGetSubjects = async () => {
+  const runGetItems = async () => {
     try {
-      const response = await getSubjects();
+      const response = await getItems();
       if (response.length > 0) {
         setError('');
-        addSubjects(response);
+        addItems(response);
       } else {
         setError('No Items');
       }
@@ -42,13 +42,13 @@ const MeasureSubjects = ({
     }
   };
 
-  const runGetMeasures = async () => {
+  const runGetTracks = async () => {
     try {
-      const response = await getMeasures();
+      const response = await getTracks();
       if (response) {
         setError('');
-        addMeasures(response.records);
-        addMeasureDates(response.measure_dates);
+        addTracks(response.records);
+        addTrackDates(response.record_dates);
       } else {
         setError('No Tracks');
       }
@@ -59,47 +59,47 @@ const MeasureSubjects = ({
 
   useEffect(() => {
     if (loginUser) {
-      runGetSubjects();
-      runGetMeasures();
+      runGetItems();
+      runGetTracks();
     }
   }, []);
 
-  const runRemoveMeasureFromDB = async (id) => {
+  const runRemoveTrackFromDB = async (id) => {
     try {
       setError('');
-      await removeMeasureFromDB(id);
+      await removeTrackFromDB(id);
     } catch {
-      setError('Sorry, unable to remove');
+      setError('Sorry, unable to remove the item');
     }
   };
 
-  const handleRemoveMeasure = () => {
-    sameDateMeasures.forEach((measure) => {
-      runRemoveMeasureFromDB(measure.id);
+  const handleRemoveTrack = () => {
+    sameDateTracks.forEach((track) => {
+      runRemoveTrackFromDB(track.id);
     });
     if (!error) {
       setMsg('Removing now...');
       setTimeout(() => {
-        history.push('/measures');
+        history.push('/tracks');
       }, 800);
     }
   };
 
-  const totalRate = calcAchieveTotalRate(sameDateMeasures, subjects.length) || 0;
+  const totalRate = calcAchieveTotalRate(sameDateTracks, items.length) || 0;
   const rateForChart = totalRate >= 100 ? 100 : totalRate;
   const leftRateForChart = 100 - rateForChart;
 
   return loginUser ? (
-    <div className="subjects">
+    <div className="items">
       {error && <p className="error-msg">{error}</p>}
       <h1 className="heading">Track it</h1>
-      <div className="subjects__header">
-        <div className="subjects__date">
-          <Link to={measureDates[currentIndex - 1] || measureDates[currentIndex] || ''}>
+      <div className="items__header">
+        <div className="items__date">
+          <Link to={trackDates[currentIndex - 1] || trackDates[currentIndex] || ''}>
             <GrCaretPrevious />
           </Link>
           <span>{moment(date).format('MMM Do YYYY')}</span>
-          <Link to={measureDates[currentIndex + 1] || measureDates[currentIndex] || ''}>
+          <Link to={trackDates[currentIndex + 1] || trackDates[currentIndex] || ''}>
             <GrCaretNext />
           </Link>
         </div>
@@ -131,66 +131,65 @@ const MeasureSubjects = ({
       </div>
       <div className="content">
         <div className="items__list mb3">
-          {subjects.map((subject) => {
-            // eslint-disable-next-line max-len
-            const targetMeasure = sameDateMeasures.find((measure) => measure.subject_id === subject.id);
+          {items.map((item) => {
+            const targetTrack = sameDateTracks.find((track) => track.item_id === item.id);
             return (
-              <MeasureSubject
-                key={subject.id}
-                subject={subject}
-                result={targetMeasure ? targetMeasure.result : 0}
+              <TrackItem
+                key={item.id}
+                item={item}
+                result={targetTrack ? targetTrack.result : 0}
                 targetDate={date}
               />
             );
           })}
         </div>
         {msg && <p className="info-msg">{msg}</p>}
-        <Link to={`/measure/${Number(date)}/edit`} className="btn dark mb3">Edit this measurement</Link>
-        <button type="button" onClick={handleRemoveMeasure} className="btn mb2 warn">Remove this measurement</button>
-        <Link to="/measures" className="btn">Back to all measurements</Link>
+        <Link to={`/track/${Number(date)}/edit`} className="btn dark mb3">Edit this track</Link>
+        <button type="button" onClick={handleRemoveTrack} className="btn mb2 warn">Remove this track</button>
+        <Link to="/tracks" className="btn">Back to all tracks</Link>
       </div>
     </div>
   ) : <Redirect to="/" />;
 };
 
 const mapStateToProps = (state, props) => ({
-  sameDateMeasures: state.measures.filter((measure) => measure.date === props.match.params.id),
-  subjects: state.subjects,
-  measureDates: state.measureDates,
+  sameDateTracks: state.tracks.filter((track) => track.date === props.match.params.id),
+  items: state.items,
+  trackDates: state.trackDates,
   loginUser: state.user.logIn,
   date: Number(props.match.params.id),
-  currentIndex: state.measureDates.findIndex((date) => date === props.match.params.id),
+  currentIndex: state.trackDates.findIndex((date) => date === props.match.params.id),
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  addSubjects: (subjects) => dispatch(addSubjects(subjects)),
-  addMeasures: (measures) => dispatch(addMeasures(measures)),
-  addMeasureDates: (measureDates) => dispatch(addMeasureDates(measureDates)),
+  addItems: (items) => dispatch(addItems(items)),
+  addTracks: (tracks) => dispatch(addTracks(tracks)),
+  addTrackDates: (trackDates) => dispatch(addTrackDates(trackDates)),
 });
 
-MeasureSubjects.propTypes = {
-  addMeasures: PropTypes.func,
-  addMeasureDates: PropTypes.func,
+TrackItems.propTypes = {
+  addTracks: PropTypes.func,
+  addTrackDates: PropTypes.func,
   history: PropTypes.instanceOf(Object),
-  sameDateMeasures: PropTypes.instanceOf(Array),
+  sameDateTracks: PropTypes.instanceOf(Array),
   loginUser: PropTypes.bool.isRequired,
-  subjects: PropTypes.instanceOf(Object),
-  addSubjects: PropTypes.func,
+  items: PropTypes.instanceOf(Object),
+  addItems: PropTypes.func,
   date: PropTypes.number,
-  measureDates: PropTypes.instanceOf(Array),
+  trackDates: PropTypes.instanceOf(Array),
   currentIndex: PropTypes.number,
 };
 
-MeasureSubjects.defaultProps = {
-  addMeasures: null,
-  addMeasureDates: null,
+TrackItems.defaultProps = {
+  addTracks: null,
+  addTrackDates: null,
   history: null,
-  sameDateMeasures: [],
-  subjects: [],
-  addSubjects: null,
+  sameDateTracks: [],
+  items: [],
+  addItems: null,
   date: 0,
-  measureDates: [],
+  trackDates: [],
   currentIndex: -1,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(MeasureSubjects);
+export default connect(mapStateToProps, mapDispatchToProps)(TrackItems);

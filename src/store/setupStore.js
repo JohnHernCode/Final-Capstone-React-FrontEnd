@@ -1,16 +1,16 @@
 import { createStore, combineReducers } from 'redux';
 import userReducer from '../reducers/users';
-import subjectReducer from '../reducers/subjects';
-import measureReducer from '../reducers/measure';
-import measureDatesReducer from '../reducers/measureDates';
+import itemReducer from '../reducers/items';
+import tracksReducer from '../reducers/tracks';
+import trackDatesReducer from '../reducers/trackDates';
 
 const setStore = () => {
   const store = createStore(
     combineReducers({
       user: userReducer,
-      subjects: subjectReducer,
-      measures: measureReducer,
-      measureDates: measureDatesReducer,
+      items: itemReducer,
+      tracks: tracksReducer,
+      trackDates: trackDatesReducer,
     }),
   );
   return store;

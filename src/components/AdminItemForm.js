@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
-const AdminSubjectForm = ({
+const AdminItemForm = ({
   title, unit, icon, target, handleSubmit,
 }) => {
   const [error, setError] = useState('');
@@ -17,7 +17,7 @@ const AdminSubjectForm = ({
       setError('');
       setInputTitle(value);
     } else {
-      setError("Letters and numbers are available as well as ', ;, :, (, and ) . Max characters: 23");
+      setError("Alphabet, numbers, ', ;, :, (, and ) are available. The number of letters should be within 23");
     }
   };
 
@@ -28,7 +28,7 @@ const AdminSubjectForm = ({
       setError('');
       setInputUnit(value);
     } else {
-      setError('Only letters can be used and min/max characters are between 1 and 9');
+      setError('Alphabet is available and the number of letters should be between 1 and 9');
     }
   };
   const onIconChange = (e) => {
@@ -42,7 +42,7 @@ const AdminSubjectForm = ({
       setError('');
       setInputTarget(value);
     } else {
-      setError('Max numbers are up to 3 digits');
+      setError('Please provide a number within 3 digit');
     }
   };
 
@@ -50,7 +50,7 @@ const AdminSubjectForm = ({
     e.preventDefault();
     const iconRegex = /^[a-zA-Z0-9-]+:[a-zA-Z0-9-]+$/;
     if (!inputTitle || !inputUnit || !inputTarget) {
-      setError('Please provide valid title, unit, and target');
+      setError('Please provide valid title, unit to record, and target time');
     } else if (!!inputIcon && !inputIcon.match(iconRegex)) {
       setError('Please provide a valid icon string or leave it empty');
       setInputIcon('');
@@ -103,12 +103,12 @@ const AdminSubjectForm = ({
           <p className="form__desc">
             Please add the string for data-icon of the icon that you can find in
             <span className="strong"><a href="https://iconify.design/icon-sets/" target="_blank" rel="noreferrer">Iconify</a></span>
-            . For example, if you would like to use
+            . For exapmle, if you want to use
             <span className="iconify" data-icon="bi:pen-fill" data-inline="false" />
             , you need to to add
             <span className="blue strong">&apos;bi:pen-fill&apos;</span>
             that is the data-icon attribute value of this icon. If you leave this field empty,
-            <span className="iconify" data-icon="pixelarticons:avatar" data-inline="false" />
+            <span className="iconify" data-icon="heroicons-outline:paper-clip" data-inline="false" />
             is provided automatically.
           </p>
           <input
@@ -126,7 +126,7 @@ const AdminSubjectForm = ({
   );
 };
 
-AdminSubjectForm.propTypes = {
+AdminItemForm.propTypes = {
   title: PropTypes.string,
   unit: PropTypes.string,
   icon: PropTypes.string,
@@ -134,7 +134,7 @@ AdminSubjectForm.propTypes = {
   handleSubmit: PropTypes.func,
 };
 
-AdminSubjectForm.defaultProps = {
+AdminItemForm.defaultProps = {
   title: '',
   unit: '',
   icon: '',
@@ -142,4 +142,4 @@ AdminSubjectForm.defaultProps = {
   handleSubmit: null,
 };
 
-export default AdminSubjectForm;
+export default AdminItemForm;

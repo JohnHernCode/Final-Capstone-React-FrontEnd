@@ -2,18 +2,18 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { logIn, setUser } from '../actions/user';
-import { removeAllMeasures } from '../actions/measures';
-import { removeAllMeasureDates } from '../actions/measureDates';
+import { removeAllTracks } from '../actions/tracks';
+import { removeAllTrackDates } from '../actions/trackDates';
 
 const Logout = ({
-  logIn, removeAllMeasures, setUser, removeAllMeasureDates,
+  logIn, removeAllTracks, setUser, removeAllTrackDates,
 }) => {
   const onLogout = () => {
     localStorage.removeItem('token');
     logIn(false);
     setUser({});
-    removeAllMeasures();
-    removeAllMeasureDates();
+    removeAllTracks();
+    removeAllTrackDates();
   };
 
   return (
@@ -24,21 +24,21 @@ const Logout = ({
 const mapDispatchToProps = (dispatch) => ({
   logIn: (status) => dispatch(logIn(status)),
   setUser: (user) => dispatch(setUser(user)),
-  removeAllMeasures: () => dispatch(removeAllMeasures()),
-  removeAllMeasureDates: () => dispatch(removeAllMeasureDates()),
+  removeAllTracks: () => dispatch(removeAllTracks()),
+  removeAllTrackDates: () => dispatch(removeAllTrackDates()),
 });
 
 Logout.propTypes = {
   logIn: PropTypes.func,
-  removeAllMeasures: PropTypes.func,
-  removeAllMeasureDates: PropTypes.func,
+  removeAllTracks: PropTypes.func,
+  removeAllTrackDates: PropTypes.func,
   setUser: PropTypes.func,
 };
 
 Logout.defaultProps = {
   logIn: null,
-  removeAllMeasures: null,
-  removeAllMeasureDates: null,
+  removeAllTracks: null,
+  removeAllTrackDates: null,
   setUser: null,
 };
 

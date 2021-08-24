@@ -6,13 +6,13 @@ import { BsCheck, BsThreeDots } from 'react-icons/bs';
 const Footer = () => (
   <footer className="footer">
     <nav className="footer__nav">
-      <NavLink to="/measure/create" className="footer__nav__item">
+      <NavLink to="/track/create" className="footer__nav__item">
         <BiBarChart />
-        <span className="footer__nav__item__text">Add Measurement</span>
+        <span className="footer__nav__item__text">Add Time</span>
       </NavLink>
-      <NavLink to="/measures" className="footer__nav__item">
+      <NavLink to="/tracks" className="footer__nav__item">
         <BsCheck />
-        <span className="footer__nav__item__text">Measure List</span>
+        <span className="footer__nav__item__text">Records</span>
       </NavLink>
       <NavLink to="/progress" className="footer__nav__item">
         <BiPieChartAlt2 />

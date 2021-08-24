@@ -7,7 +7,7 @@ import { BiChevronRightCircle } from 'react-icons/bi';
 import { moment } from '../api/api';
 import calcAchieveTotalRate from '../helpers/calcAchieveTotalRate';
 
-const MeasureListSubject = ({ milSec, sameDateMeasures, subjectNum }) => {
+const TrackListItem = ({ milSec, sameDateTracks, itemNum }) => {
   const [dateSign, setDateSign] = useState('');
 
   const checkDateSign = () => {
@@ -36,15 +36,15 @@ const MeasureListSubject = ({ milSec, sameDateMeasures, subjectNum }) => {
     }, 1000);
   }, []);
 
-  const totalRate = calcAchieveTotalRate(sameDateMeasures, subjectNum) || 0;
+  const totalRate = calcAchieveTotalRate(sameDateTracks, itemNum) || 0;
   const rateForChart = totalRate >= 100 ? 100 : totalRate;
   const leftRateForChart = 100 - rateForChart;
 
   return (
-    <div className={`measure__subject ${dateSign}`}>
-      <div className="measure__subject__sign">{dateSign !== 'lastweek' ? dateSign : ''}</div>
-      <Link to={`/measures/${milSec}`} className="measure__subject__link">
-        <div className="measure__subject__graph">
+    <div className={`tracks__item ${dateSign}`}>
+      <div className="tracks__item__sign">{dateSign !== 'lastweek' ? dateSign : ''}</div>
+      <Link to={`/tracks/${milSec}`} className="tracks__item__link">
+        <div className="tracks__item__graph">
           <Chart
             width="60px"
             height="60px"
@@ -64,8 +64,8 @@ const MeasureListSubject = ({ milSec, sameDateMeasures, subjectNum }) => {
             rootProps={{ 'data-testid': '6' }}
           />
         </div>
-        <div className="measure__item__date">{moment(milSec).format('MMM Do YYYY')}</div>
-        <div className="measure__subject__rate">
+        <div className="tracks__item__date">{moment(milSec).format('MMM Do YYYY')}</div>
+        <div className="tracks__item__rate">
           {rateForChart >= 100 && (
             <span className="goodjob">
               <GiAchievement />
@@ -74,7 +74,7 @@ const MeasureListSubject = ({ milSec, sameDateMeasures, subjectNum }) => {
           <span className="rate">{rateForChart}</span>
           %
         </div>
-        <div className="measure__subject__toright">
+        <div className="tracks__item__toright">
           <BiChevronRightCircle />
         </div>
       </Link>
@@ -82,16 +82,16 @@ const MeasureListSubject = ({ milSec, sameDateMeasures, subjectNum }) => {
   );
 };
 
-MeasureListSubject.propTypes = {
+TrackListItem.propTypes = {
   milSec: PropTypes.number,
-  sameDateMeasures: PropTypes.instanceOf(Array),
-  subjectNum: PropTypes.number,
+  sameDateTracks: PropTypes.instanceOf(Array),
+  itemNum: PropTypes.number,
 };
 
-MeasureListSubject.defaultProps = {
+TrackListItem.defaultProps = {
   milSec: 0,
-  sameDateMeasures: [],
-  subjectNum: 0,
+  sameDateTracks: [],
+  itemNum: 0,
 };
 
-export default MeasureListSubject;
+export default TrackListItem;

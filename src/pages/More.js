@@ -19,7 +19,7 @@ const More = ({ loginUser, userName }) => (loginUser ? (
           <div className="more__names">
             <div className="more__names__name">{userName}</div>
             <div className="more__names__text">
-              I am brushing up my spoken English!
+              Its Super Learning Time!
             </div>
           </div>
         </div>

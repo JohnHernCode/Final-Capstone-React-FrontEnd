@@ -15,7 +15,7 @@ const Header = ({ adminUser, whileLoggedIn }) => {
   return (
     <header className="header">
       <div className="header__title-wrap">
-        <Link to="/" className="header__title">Study Up!</Link>
+        <Link to="/" className="header__title">Study Up! Study Tracker</Link>
       </div>
       <button type="button" className={`header__toggle${toggleClass}`} onClick={onToggleMenu}>
         <span>&nbsp;</span>
@@ -24,20 +24,20 @@ const Header = ({ adminUser, whileLoggedIn }) => {
       </button>
       <nav className={`header__nav${toggleClass}`}>
         <NavLink exact to="/" className="header__link" onClick={closeToggleMenu}>Home</NavLink>
-        <NavLink exact to="/measure/create" className="header__link" onClick={closeToggleMenu}>Add Measurement</NavLink>
-        <NavLink exact to="/measures" className="header__link" onClick={closeToggleMenu}>All Measurements</NavLink>
+        <NavLink exact to="/track/create" className="header__link" onClick={closeToggleMenu}>Add Time</NavLink>
+        <NavLink exact to="/tracks" className="header__link" onClick={closeToggleMenu}>All Records</NavLink>
         <NavLink exact to="/progress" className="header__link" onClick={closeToggleMenu}>Progress</NavLink>
         <NavLink exact to="/more" className="header__link" onClick={closeToggleMenu}>More</NavLink>
         {!whileLoggedIn && (
           <>
             <NavLink exact to="/login" className="header__link" onClick={closeToggleMenu}>Login</NavLink>
-            <NavLink exact to="/Signup" className="header__link" onClick={closeToggleMenu}>Signup</NavLink>
+            <NavLink exact to="/signup" className="header__link" onClick={closeToggleMenu}>Signup</NavLink>
           </>
         )}
 
         {(whileLoggedIn && adminUser) && (
           <>
-            <NavLink exact to="/admin" className="header__link" onClick={closeToggleMenu}>[Admin Menu] Subject List</NavLink>
+            <NavLink exact to="/admin" className="header__link" onClick={closeToggleMenu}>Item List</NavLink>
           </>
         )}
       </nav>

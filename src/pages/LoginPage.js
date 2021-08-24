@@ -2,47 +2,46 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { Link, Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import UsersForm from '../components/userForm';
-import { signedUp } from '../api/userAuth';
+import UsersForm from '../components/UserForm';
+import { loggedIn } from '../api/userAuth';
 import { logIn, setUser } from '../actions/user';
 
-const SignupPage = ({
+const LoginPage = ({
   history, setUser, logIn, loginUser,
 }) => {
   const [errors, setErrors] = useState([]);
   const [msg, setMsg] = useState('');
 
-  const runSignedUpAuth = async (username, password) => {
+  const runLoginAuth = async (username, password) => {
     try {
-      const response = await signedUp(username, password);
-      if (response.status === 'created') {
+      const response = await loggedIn(username, password);
+      if (response.logged_in) {
         setMsg('Logging in...');
-        setErrors([]);
         localStorage.setItem('token', response.token);
         setUser(response.user);
         logIn(true);
-        history.push('/measures');
+        history.push(response.user.admin ? '/admin' : '/measures');
       } else if (response.errors.length > 0) {
         setMsg('');
         setErrors(response.errors);
       }
     } catch {
       setMsg('');
-      setErrors(['Sign up failed.']);
+      setErrors(['Login failed.']);
     }
   };
 
   const handleSubmit = (username, password) => {
-    runSignedUpAuth(username, password);
+    runLoginAuth(username, password);
   };
 
   return loginUser ? <Redirect to="/measures" /> : (
     <div>
-      <h1 className="heading">Signup</h1>
+      <h1 className="heading">Login</h1>
       <div className="content">
-        {errors && errors.map((error) => (<p key={error} className="error-msg">{error}</p>))}
+        {errors && errors.map((error) => (<p key={error}>{error}</p>))}
         {msg && <p className="info-msg">{msg}</p>}
-        <UsersForm handleSubmit={handleSubmit} btnName="Sign Up" />
+        <UsersForm handleSubmit={handleSubmit} btnName="Login" />
         <Link to="/" className="btn">Go back to Home</Link>
       </div>
     </div>
@@ -59,16 +58,16 @@ const mapDispatchToProps = (dispatch) => ({
   logIn: (status) => dispatch(logIn(status)),
 });
 
-SignupPage.propTypes = {
+LoginPage.propTypes = {
   history: PropTypes.instanceOf(Object),
-  logIn: PropTypes.func,
+  logIn: PropTypes.func.isRequired,
   setUser: PropTypes.func,
   loginUser: PropTypes.bool.isRequired,
 };
 
-SignupPage.defaultProps = {
+LoginPage.defaultProps = {
   history: null,
-  logIn: null,
   setUser: null,
 };
-export default connect(mapStateToProps, mapDispatchToProps)(SignupPage);
+
+export default connect(mapStateToProps, mapDispatchToProps)(LoginPage);
