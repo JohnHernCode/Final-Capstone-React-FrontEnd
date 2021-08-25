@@ -21,8 +21,8 @@ import Progress from '../pages/Progress';
 const AppRoutes = () => (
   <BrowserRouter>
     <div className="whole-container">
-      <LoginState />
       <Header />
+      <LoginState />
       <div className="container">
         <Switch>
           <Route exact path="/" component={Home} />

@@ -57,8 +57,8 @@ const TrackListItem = ({ milSec, sameDateTracks, itemNum }) => {
               pieStartAngle: 0,
               tooltip: { trigger: 'none' },
               slices: {
-                0: { color: '#41b5e8' },
-                1: { color: '#eaeef1' },
+                0: { color: '#ffffff' },
+                1: { color: '#af0101' },
               },
             }}
             rootProps={{ 'data-testid': '6' }}

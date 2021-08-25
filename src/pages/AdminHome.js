@@ -33,16 +33,12 @@ const AdminHome = ({
 
   return adminStatus && loginUser ? (
     <div className="admin">
-      <h1 className="heading">
-        Items
-        <span className="admin-icon">admin</span>
-      </h1>
       <div className="content">
         {error && <p className="error-msg">{error}</p>}
         <div className="admin__items mb3">
           {items.length > 0 && <ItemList items={items} />}
         </div>
-        <Link to="/admin/item/create" className="btn dark">Add Item</Link>
+        <Link to="/admin/item/create" className="home__btn">Add Item</Link>
       </div>
     </div>
   ) : <Redirect to="/" />;

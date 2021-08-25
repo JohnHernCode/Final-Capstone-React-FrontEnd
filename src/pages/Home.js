@@ -6,15 +6,14 @@ import Logout from '../components/Logout';
 
 const Home = ({ history, loginUser }) => (
   <div>
-    <h1 className="heading">Home</h1>
     <div className="content">
       <h2 className="home__heading">
         Welcome to the Study Up App!
       </h2>
       {loginUser ? <Logout history={history} /> : (
-        <div>
-          <Link to="/login" className="btn mb2 dark">Login</Link>
-          <Link to="/Signup" className="btn mb2 medium">Signup</Link>
+        <div className="home__buttons">
+          <Link to="/login" className="home__btn">Login</Link>
+          <Link to="/Signup" className="home__btn">Signup</Link>
         </div>
       )}
 

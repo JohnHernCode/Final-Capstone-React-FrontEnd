@@ -38,12 +38,12 @@ const SignupPage = ({
 
   return loginUser ? <Redirect to="/measures" /> : (
     <div>
-      <h1 className="heading">Signup</h1>
+      <h1 className="home__heading">Signup</h1>
       <div className="content">
         {errors && errors.map((error) => (<p key={error} className="error-msg">{error}</p>))}
         {msg && <p className="info-msg">{msg}</p>}
         <UsersForm handleSubmit={handleSubmit} btnName="Sign Up" />
-        <Link to="/" className="btn">Go back to Home</Link>
+        <Link to="/" className="home__btn">Go back to Home</Link>
       </div>
     </div>
   );

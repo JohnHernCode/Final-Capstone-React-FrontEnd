@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 const LoginState = ({ loginS, user }) => (
   <div className="login-status">
-    {loginS ? `Hi there, ${user.user.username}` : 'Please log in.'}
+    {loginS ? `${user.user.username}` : 'Please log in.'}
   </div>
 );
 

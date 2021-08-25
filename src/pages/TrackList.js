@@ -53,7 +53,7 @@ const TrackList = ({
 
   return loginUser ? (
     <div className="TrackList">
-      <h1 className="heading">All tracks</h1>
+      <h1 className="home__heading">All Records</h1>
       <div className="content">
         {error && <p className="error-msg">{error}</p>}
         <div className="tracks mb3">

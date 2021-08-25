@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import pluralize from 'pluralize';
+import { Icon } from '@iconify/react';
 import { moment } from '../api/api';
 
 const TrackForm = ({
@@ -31,17 +32,17 @@ const TrackForm = ({
   };
 
   return (
-    <div className="track-form mb3">
+    <div className="track-form ">
       {error && <p className="error-msg">{error}</p>}
-      <form className="track-form__form mb3" onSubmit={onSubmit}>
+      <form className="track-form__form" onSubmit={onSubmit}>
         <div className="track-form__date">
           <input type="date" onChange={onDateChange} value={date} />
         </div>
-        <div className="track-form__group mb3">
+        <div className="track-form__group">
           {items.map((item) => (
             <div className="track-form__item" key={item.id}>
               <div className="track-form__icon">
-                <span className="iconify" data-icon={item.icon} data-inline="false" />
+                <span className="iconify"><Icon icon={item.icon || 'bi:pen-fill'} /></span>
               </div>
               <div className="track-form__title">{item.title}</div>
               <input
@@ -58,7 +59,7 @@ const TrackForm = ({
             </div>
           ))}
         </div>
-        <button type="submit" className="btn dark">Save</button>
+        <button type="submit" className="home__btn">Save</button>
       </form>
     </div>
   );

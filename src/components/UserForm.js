@@ -31,7 +31,7 @@ const UsersForm = ({ handleSubmit, btnName }) => {
             onChange={(e) => setPassword(e.target.value)}
           />
         </div>
-        <button type="submit" className="btn mb3">{btnName}</button>
+        <button type="submit" className="home__btn">{btnName}</button>
       </form>
     </div>
   );

@@ -37,7 +37,7 @@ const LoginPage = ({
 
   return loginUser ? <Redirect to="/measures" /> : (
     <div>
-      <h1 className="heading">Login</h1>
+      <h1 className="home__heading">Login</h1>
       <div className="content">
         {errors && errors.map((error) => (<p key={error}>{error}</p>))}
         {msg && <p className="info-msg">{msg}</p>}

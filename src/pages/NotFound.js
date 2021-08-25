@@ -4,10 +4,10 @@ import image from '../images/404.jpg';
 
 const NotFound = () => (
   <div className="notfound">
-    <h1 className="heading">404 Not Found</h1>
+    <h1 className="home__heading">404 Not Found</h1>
     <div className="content">
-      <img src={image} alt="404 Not Found" className="image mb2" />
-      <Link to="/" className="btn">Home</Link>
+      <img src={image} alt="404 Not Found" className="image" />
+      <Link to="/" className="home__btn">Home</Link>
     </div>
   </div>
 );

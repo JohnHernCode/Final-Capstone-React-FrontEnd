@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { Icon } from '@iconify/react';
 import pluralize from 'pluralize';
 
 const TrackItem = ({ item, result, targetDate }) => {
@@ -14,7 +15,7 @@ const TrackItem = ({ item, result, targetDate }) => {
     <div className="items__item">
       <Link to={`/track/${Number(targetDate)}/edit`} className="items__item-link">
         <div className="items__icon">
-          <span className="iconify" data-icon={icon || 'bi:pen-fill'} data-inline="false" />
+          <span className="iconify"><Icon icon={icon || 'bi:pen-fill'} /></span>
         </div>
         <div className="items__text">
           <div className="items__title">{title}</div>

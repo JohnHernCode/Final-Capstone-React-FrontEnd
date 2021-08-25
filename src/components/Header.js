@@ -15,7 +15,7 @@ const Header = ({ adminUser, whileLoggedIn }) => {
   return (
     <header className="header">
       <div className="header__title-wrap">
-        <Link to="/" className="header__title">Study Up! Study Tracker</Link>
+        <Link to="/" className="header__title">Study Up! </Link>
       </div>
       <button type="button" className={`header__toggle${toggleClass}`} onClick={onToggleMenu}>
         <span>&nbsp;</span>
@@ -37,7 +37,8 @@ const Header = ({ adminUser, whileLoggedIn }) => {
 
         {(whileLoggedIn && adminUser) && (
           <>
-            <NavLink exact to="/admin" className="header__link" onClick={closeToggleMenu}>Item List</NavLink>
+            <NavLink exact to="/admin" className="header__link" onClick={closeToggleMenu}>Admin - Item List</NavLink>
+            <Link to="/admin/item/create" className="header__link" onClick={closeToggleMenu}>Admin - Add Item</Link>
           </>
         )}
       </nav>

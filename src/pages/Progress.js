@@ -58,7 +58,6 @@ const Progress = ({
   const leftPercentForChart = 100 - percentForChart;
   return loginUser ? (
     <div className="progress">
-      <h1 className="heading">Your Progress</h1>
       <div className="content">
         {error && <p className="error-msg">{error}</p>}
         <div className="progress__header">
@@ -95,7 +94,7 @@ const Progress = ({
         </div>
         <div className="progress__graph">
           <div className="progress__title">
-            Weekly Achivements Rate (%)
+            Weekly Achievements Rate (%)
           </div>
           <div className="progress__graph__container">
             <Chart
@@ -111,6 +110,9 @@ const Progress = ({
                 ['3 weeks ago', getAvgRate(trackDates, tracks, 'THREE_WEEKS_BEFORE')],
                 ['Last month', getAvgRate(trackDates, tracks, 'LAST_MONTH')],
               ]}
+              options={{
+                colors: ['rgb(175, 1, 1)'],
+              }}
               rootProps={{ 'data-testid': '2' }}
             />
           </div>

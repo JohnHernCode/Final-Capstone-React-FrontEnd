@@ -62,13 +62,12 @@ const AddTrack = ({
 
   return (loginUser ? (
     <div className="add-track">
-      <h1 className="heading">Add Track</h1>
       <div className="content">
-        <div className="content__msg">Welcome back. Let&apos;s add your track for today!</div>
+        <div className="content__msg">Add your study time for today!</div>
         <TrackForm handleSubmit={handleSubmit} itemTitles={itemTitles} targetDate={null} />
         {msg && <p className="info-msg">{msg}</p>}
         {error && <p className="error-msg">{error}</p>}
-        <Link to="/tracks" className="btn">Cancel & Back to Track List</Link>
+        <Link to="/tracks" className="home__btn">Cancel & Back to Time List</Link>
       </div>
     </div>
   ) : <Redirect to="/" />);

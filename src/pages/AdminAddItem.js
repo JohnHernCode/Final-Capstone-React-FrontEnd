@@ -26,14 +26,10 @@ const AdminAddItem = ({ history, adminStatus, loginUser }) => {
 
   return adminStatus && loginUser ? (
     <div className="admin">
-      <h1 className="heading">
-        Admin Add Item
-        <span className="admin-icon">admin</span>
-      </h1>
       <div className="content">
         {error && <p className="error-msg">{error}</p>}
         <AdminItemForm handleSubmit={handleSubmit} />
-        <Link to="/admin" className="btn">Back to Item List</Link>
+        <Link to="/admin" className="home__btn">Back to Item List</Link>
       </div>
     </div>
   ) : <Redirect to="/" />;

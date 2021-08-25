@@ -3,13 +3,15 @@ import { connect } from 'react-redux';
 import { Redirect, Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { BiBuildingHouse, BiHelpCircle } from 'react-icons/bi';
-import { GrContact, GrSettingsOption } from 'react-icons/gr';
+import { GoSettings } from 'react-icons/go';
+import { RiContactsLine } from 'react-icons/ri';
 import { AiFillGithub } from 'react-icons/ai';
 import thumb from '../images/default-icon.jpg';
 
+const capitalize = (str) => str.charAt(0).toUpperCase() + str.slice(1);
+
 const More = ({ loginUser, userName }) => (loginUser ? (
   <div className="more">
-    <h1 className="heading">More</h1>
     <div className="more__content">
       <div className="more__header">
         <div className="more__header__wrapper">
@@ -17,9 +19,9 @@ const More = ({ loginUser, userName }) => (loginUser ? (
             <img src={thumb} alt={userName} className="more__thumb__image" />
           </div>
           <div className="more__names">
-            <div className="more__names__name">{userName}</div>
+            <div className="more__names__name">{capitalize(userName)}</div>
             <div className="more__names__text">
-              Its Super Learning Time!
+              I&apos;m a super learner
             </div>
           </div>
         </div>
@@ -30,7 +32,7 @@ const More = ({ loginUser, userName }) => (loginUser ? (
           About Us
         </Link>
         <Link className="more__link" to="/more">
-          <GrContact />
+          <RiContactsLine />
           Contact Us
         </Link>
         <Link className="more__link" to="/more">
@@ -38,7 +40,7 @@ const More = ({ loginUser, userName }) => (loginUser ? (
           Profile
         </Link>
         <Link className="more__link" to="/more">
-          <GrSettingsOption />
+          <GoSettings />
           Settings
         </Link>
         <Link className="more__link" to="/more">
