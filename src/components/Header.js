@@ -37,8 +37,8 @@ const Header = ({ adminUser, whileLoggedIn }) => {
 
         {(whileLoggedIn && adminUser) && (
           <>
-            <NavLink exact to="/admin" className="header__link" onClick={closeToggleMenu}>Admin - Item List</NavLink>
-            <Link to="/admin/item/create" className="header__link" onClick={closeToggleMenu}>Admin - Add Item</Link>
+            <NavLink exact to="/admin" className="header__link" onClick={closeToggleMenu}>Admin - Subject List</NavLink>
+            <Link to="/admin/item/create" className="header__link" onClick={closeToggleMenu}>Admin - Add Subject</Link>
           </>
         )}
       </nav>
