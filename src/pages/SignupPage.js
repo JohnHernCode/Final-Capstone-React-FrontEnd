@@ -21,7 +21,7 @@ const SignupPage = ({
         localStorage.setItem('token', response.token);
         setUser(response.user);
         logIn(true);
-        history.push('/measures');
+        history.push('/tracks');
       } else if (response.errors.length > 0) {
         setMsg('');
         setErrors(response.errors);
@@ -36,7 +36,7 @@ const SignupPage = ({
     runSignedUpAuth(username, password);
   };
 
-  return loginUser ? <Redirect to="/measures" /> : (
+  return loginUser ? <Redirect to="/tracks" /> : (
     <div>
       <h1 className="home__heading">Signup</h1>
       <div className="content">

@@ -1,14 +1,14 @@
 import { combineReducers } from 'redux';
-import MeasurementReducer from './tracks';
-import measurementDatesReducer from './trackDates';
-import itemReducer from './items';
 import userReducer from './users';
+import itemReducer from './items';
+import tracksReducer from './tracks';
+import trackDatesReducer from './trackDates';
 
 const rootReducer = combineReducers({
-  measurements: MeasurementReducer,
-  measurementDates: measurementDatesReducer,
   user: userReducer,
   items: itemReducer,
+  tracks: tracksReducer,
+  trackDates: trackDatesReducer,
 });
 
 export default rootReducer;

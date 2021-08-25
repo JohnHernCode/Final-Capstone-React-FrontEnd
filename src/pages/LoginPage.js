@@ -20,7 +20,7 @@ const LoginPage = ({
         localStorage.setItem('token', response.token);
         setUser(response.user);
         logIn(true);
-        history.push(response.user.admin ? '/admin' : '/measures');
+        history.push(response.user.admin ? '/admin' : '/tracks');
       } else if (response.errors.length > 0) {
         setMsg('');
         setErrors(response.errors);
@@ -35,7 +35,7 @@ const LoginPage = ({
     runLoginAuth(username, password);
   };
 
-  return loginUser ? <Redirect to="/measures" /> : (
+  return loginUser ? <Redirect to="/tracks" /> : (
     <div>
       <h1 className="home__heading">Login</h1>
       <div className="content">
