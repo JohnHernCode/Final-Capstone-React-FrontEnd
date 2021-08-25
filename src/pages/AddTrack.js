@@ -43,10 +43,10 @@ const AddTrack = ({
   const handleSubmit = (StrDate, state) => {
     const sameDateTrack = tracks.find((track) => track.date === StrDate);
     if (sameDateTrack) {
-      setError('Track for the same date already exists');
+      setError('You have already recorded time today');
     } else {
       setError('');
-      setMsg('Adding track now...');
+      setMsg('Adding time now...');
       Object.keys(state).forEach((key) => {
         if (state[key]) {
           runAddNewTrack(state[key], key, StrDate);
