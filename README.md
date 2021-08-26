@@ -15,7 +15,7 @@
 
 This is the Microverse Mobile React front end of the final project. The design of the project to simulate a
 real world tracking app. The project uses Node, React, React-DOM, Redux, CSS, and ES6. 
-Deployment available via Heroku.
+Deployment available via Heroku. The backend API is available [here](https://github.com/JohnHernCode/Final-Capstone-Rails-Backend-API)
 
 ## Screen Shot
 
@@ -35,6 +35,7 @@ Technologies used.
 - ES6
 - Node.js
 - Git flow
+- [Rails backend API](https://github.com/JohnHernCode/Final-Capstone-Rails-Backend-API)
 
 ### Getting Started
 
