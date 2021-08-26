@@ -136,7 +136,7 @@ const Progress = ({
             );
           })}
         </div>
-        <Link to="/progress" className="btn">Share</Link>
+        <Link to="/progress" className="home__btn">Share</Link>
       </div>
     </div>
   ) : <Redirect to="/" />;

@@ -38,7 +38,7 @@ const AdminHome = ({
         <div className="admin__items mb3">
           {items.length > 0 && <ItemList items={items} />}
         </div>
-        <Link to="/admin/item/create" className="home__btn">Add Item</Link>
+        <Link to="/admin/item/create" className="home__btn">Add Subject</Link>
       </div>
     </div>
   ) : <Redirect to="/" />;

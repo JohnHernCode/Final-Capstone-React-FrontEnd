@@ -71,7 +71,7 @@ const TrackList = ({
             );
           })}
         </div>
-        <Link to="track/create" className="btn dark">Add New Track</Link>
+        <Link to="track/create" className="home__btn">Add New Record</Link>
       </div>
     </div>
   ) : <Redirect to="/" />;

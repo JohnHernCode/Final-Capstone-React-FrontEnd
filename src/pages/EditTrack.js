@@ -72,12 +72,12 @@ const EditTrack = ({
 
   return (loginUser ? (
     <div className="add-track">
-      <h1 className="heading">Edit Track</h1>
+      <h1 className="heading">Edit Record</h1>
       <div className="content">
         {error && <p className="error-msg">{error}</p>}
         <TrackForm handleSubmit={handleSubmit} itemTitles={itemTitles} targetDate={targetDate} />
         {msg && <p className="info-msg">{msg}</p>}
-        <Link to="/tracks" className="btn">Cancel & Back to Track List</Link>
+        <Link to="/tracks" className="btn">Cancel & Back to Records List</Link>
       </div>
     </div>
   ) : <Redirect to="/" />);

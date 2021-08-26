@@ -29,7 +29,7 @@ const AdminAddItem = ({ history, adminStatus, loginUser }) => {
       <div className="content">
         {error && <p className="error-msg">{error}</p>}
         <AdminItemForm handleSubmit={handleSubmit} />
-        <Link to="/admin" className="home__btn">Back to Item List</Link>
+        <Link to="/admin" className="home__btn">Back to Subject List</Link>
       </div>
     </div>
   ) : <Redirect to="/" />;

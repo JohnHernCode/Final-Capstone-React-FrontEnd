@@ -69,7 +69,7 @@ const AdminItemForm = ({
   return (
     <div>
       <form className="form" onSubmit={onSubmit}>
-        <div className="form__title">Item Label</div>
+        <div className="form__title">Subject Label</div>
         <div className="form__group">
           <input
             type="text"
@@ -79,7 +79,7 @@ const AdminItemForm = ({
             onChange={onTitleChange}
           />
         </div>
-        <div className="form__title">Unit (Singular)</div>
+        <div className="form__title">Unit (Singular such as hr or min)</div>
         <div className="form__group">
           <input
             type="text"
@@ -89,7 +89,7 @@ const AdminItemForm = ({
             onChange={onUnitChange}
           />
         </div>
-        <div className="form__title">Target</div>
+        <div className="form__title">Target (how many hours or minutes of study)</div>
         <div className="form__group">
           <input
             type="text"
@@ -117,7 +117,7 @@ const AdminItemForm = ({
           />
         </div>
         {error && <p className="error-msg mb3">{error}</p>}
-        <button type="submit" className="home__btn">Save Item</button>
+        <button type="submit" className="home__btn">Save Subject</button>
       </form>
     </div>
   );
