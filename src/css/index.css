@@ -461,19 +461,6 @@ h6 {
   margin-top: -2.4rem;
 }
 
-.items__chart__container::after {
-  content: '';
-  display: block;
-  width: 9rem;
-  height: 9rem;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-49%, -49%);
-  background: #fff;
-  border-radius: 50%;
-}
-
 .items__chart__comment {
   position: relative;
   z-index: 1;

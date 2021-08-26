@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Home should match with snapshot 1`] = `
+<div>
+  <div
+    className="content"
+  >
+    <h2
+      className="home__heading"
+    >
+      Welcome to the Study Up App!
+    </h2>
+    <button
+      className="home__btn"
+      onClick={[Function]}
+      type="button"
+    >
+      Logout
+    </button>
+  </div>
+</div>
+`;

@@ -1,0 +1,136 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Footer should match with snapshot 1`] = `
+<footer
+  className="footer"
+>
+  <nav
+    className="footer__nav"
+  >
+    <a
+      aria-current={null}
+      className="footer__nav__item"
+      href="/track/create"
+      onClick={[Function]}
+    >
+      <svg
+        fill="currentColor"
+        height="1em"
+        stroke="currentColor"
+        strokeWidth="0"
+        style={
+          Object {
+            "color": undefined,
+          }
+        }
+        viewBox="0 0 24 24"
+        width="1em"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M9 6H11V20H9zM13 8H15V20H13zM17 4H19V20H17zM5 12H7V20H5z"
+        />
+      </svg>
+      <span
+        className="footer__nav__item__text"
+      >
+        Add Time
+      </span>
+    </a>
+    <a
+      aria-current={null}
+      className="footer__nav__item"
+      href="/tracks"
+      onClick={[Function]}
+    >
+      <svg
+        fill="currentColor"
+        height="1em"
+        stroke="currentColor"
+        strokeWidth="0"
+        style={
+          Object {
+            "color": undefined,
+          }
+        }
+        viewBox="0 0 16 16"
+        width="1em"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          clipRule="evenodd"
+          d="M13.854 3.646a.5.5 0 010 .708l-7 7a.5.5 0 01-.708 0l-3.5-3.5a.5.5 0 11.708-.708L6.5 10.293l6.646-6.647a.5.5 0 01.708 0z"
+          fillRule="evenodd"
+        />
+      </svg>
+      <span
+        className="footer__nav__item__text"
+      >
+        Records
+      </span>
+    </a>
+    <a
+      aria-current={null}
+      className="footer__nav__item"
+      href="/progress"
+      onClick={[Function]}
+    >
+      <svg
+        fill="currentColor"
+        height="1em"
+        stroke="currentColor"
+        strokeWidth="0"
+        style={
+          Object {
+            "color": undefined,
+          }
+        }
+        viewBox="0 0 24 24"
+        width="1em"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M12,2C6.486,2,2,6.486,2,12s4.486,10,10,10s10-4.486,10-10S17.514,2,12,2z M19.931,11H13V6V4.069 C16.611,4.522,19.478,7.389,19.931,11z M4,12c0-4.072,3.061-7.436,7-7.931V6v6c0,0.119,0.028,0.234,0.069,0.345 c0.013,0.032,0.026,0.062,0.042,0.093c0.015,0.03,0.022,0.063,0.041,0.093l4.202,6.723C14.332,19.728,13.198,20,12,20 C7.589,20,4,16.411,4,12z M17.052,18.196L13.805,13h6.126C19.669,15.087,18.605,16.928,17.052,18.196z"
+        />
+      </svg>
+      <span
+        className="footer__nav__item__text"
+      >
+        Your Progress
+      </span>
+    </a>
+    <a
+      aria-current={null}
+      className="footer__nav__item"
+      href="/more"
+      onClick={[Function]}
+    >
+      <svg
+        fill="currentColor"
+        height="1em"
+        stroke="currentColor"
+        strokeWidth="0"
+        style={
+          Object {
+            "color": undefined,
+          }
+        }
+        viewBox="0 0 16 16"
+        width="1em"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          clipRule="evenodd"
+          d="M3 9.5a1.5 1.5 0 110-3 1.5 1.5 0 010 3zm5 0a1.5 1.5 0 110-3 1.5 1.5 0 010 3zm5 0a1.5 1.5 0 110-3 1.5 1.5 0 010 3z"
+          fillRule="evenodd"
+        />
+      </svg>
+      <span
+        className="footer__nav__item__text"
+      >
+        More
+      </span>
+    </a>
+  </nav>
+</footer>
+`;

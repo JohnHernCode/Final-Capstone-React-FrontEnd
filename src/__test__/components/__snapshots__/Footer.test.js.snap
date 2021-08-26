@@ -1,0 +1,105 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AdminItemForm should match with snapshot 1`] = `
+<div>
+  <form
+    className="form"
+    onSubmit={[Function]}
+  >
+    <div
+      className="form__title"
+    >
+      Subject Label
+    </div>
+    <div
+      className="form__group"
+    >
+      <input
+        name="title"
+        onChange={[Function]}
+        placeholder="Item Label"
+        type="text"
+        value=""
+      />
+    </div>
+    <div
+      className="form__title"
+    >
+      Unit (Singular such as hr or min)
+    </div>
+    <div
+      className="form__group"
+    >
+      <input
+        name="unit"
+        onChange={[Function]}
+        placeholder="Item Unit"
+        type="text"
+        value=""
+      />
+    </div>
+    <div
+      className="form__title"
+    >
+      Target (how many hours or minutes of study)
+    </div>
+    <div
+      className="form__group"
+    >
+      <input
+        name="unit"
+        onChange={[Function]}
+        placeholder="Item Target"
+        type="text"
+        value=""
+      />
+    </div>
+    <div
+      className="form__title"
+    >
+      Icon
+    </div>
+    <p
+      className="form__desc"
+    >
+      Please add the string for data-icon of the
+      <span
+        className="strong"
+      >
+        <a
+          href="https://iconify.design/icon-sets/"
+          rel="noreferrer"
+          target="_blank"
+        >
+          Iconify
+        </a>
+      </span>
+      icon that you would like to use. If you do not add an icon
+      <span
+        className="iconify"
+      >
+        <span />
+      </span>
+      will be used by default.
+    </p>
+    <div
+      className="form__group"
+    >
+      <input
+        name="icon"
+        onChange={[Function]}
+        placeholder="Item icon"
+        type="text"
+        value=""
+      />
+    </div>
+    
+    <button
+      className="home__btn"
+      type="submit"
+    >
+      Save Subject
+    </button>
+  </form>
+</div>
+`;
