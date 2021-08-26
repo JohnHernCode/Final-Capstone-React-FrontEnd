@@ -19,7 +19,7 @@ Deployment available via Heroku.
 
 ## Screen Shot
 
-![Gif](/Preview.gif)
+![Gif](/preview.gif)
 
 ## Live Demo
 
