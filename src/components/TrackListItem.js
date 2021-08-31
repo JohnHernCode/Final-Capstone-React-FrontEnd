@@ -6,34 +6,13 @@ import { GiAchievement } from 'react-icons/gi';
 import { BiChevronRightCircle } from 'react-icons/bi';
 import { moment } from '../api/api';
 import calcAchieveTotalRate from '../helpers/calcAchieveTotalRate';
+import { checkDateSign, setBeforeSign } from '../helpers/trackListHelper';
 
 const TrackListItem = ({ milSec, sameDateTracks, itemNum }) => {
   const [dateSign, setDateSign] = useState('');
 
-  const checkDateSign = () => {
-    const targetDay = moment(milSec);
-
-    if (targetDay.isSame(moment(), 'day')) {
-      setDateSign('today');
-    } else if (targetDay.isSame(moment().subtract(1, 'days'), 'day')) {
-      setDateSign('yesterday');
-    } else if (targetDay.isSameOrBefore(moment().subtract(7, 'days'))) {
-      setDateSign('lastweek');
-    }
-  };
-
-  const setBeforeSign = () => {
-    const beforeArray = Array.from(document.querySelectorAll('.lastweek'));
-    if (beforeArray[0] === undefined || !beforeArray[0].classList) return;
-    beforeArray[0].classList.add('first');
-    beforeArray[0].firstElementChild.textContent = 'before last week';
-  };
-
   useEffect(() => {
-    checkDateSign();
-    setTimeout(() => {
-      setBeforeSign();
-    }, 1000);
+    checkDateSign(setDateSign, setBeforeSign);
   }, []);
 
   const totalRate = calcAchieveTotalRate(sameDateTracks, itemNum) || 0;
