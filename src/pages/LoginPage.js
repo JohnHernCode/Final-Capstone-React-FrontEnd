@@ -12,7 +12,7 @@ const LoginPage = ({
   const [errors, setErrors] = useState([]);
   const [msg, setMsg] = useState('');
 
-  const runLoginAuth = async (username, password) => {
+  const handleSubmit = async (username, password) => {
     try {
       const response = await loggedIn(username, password);
       if (response.logged_in) {
@@ -29,10 +29,6 @@ const LoginPage = ({
       setMsg('');
       setErrors(['Login failed.']);
     }
-  };
-
-  const handleSubmit = (username, password) => {
-    runLoginAuth(username, password);
   };
 
   return loginUser ? <Redirect to="/tracks" /> : (
