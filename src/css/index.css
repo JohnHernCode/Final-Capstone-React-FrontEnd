@@ -667,7 +667,10 @@ h6 {
   display: block;
   width: 94%;
   font-size: 1.8rem;
-  padding: 1rem;
+  padding: 1px;
+  background-color: rgb(175, 1, 1);
+  border-radius: 5px;
+  color: #fff;
 }
 
 .track-form__icon {
@@ -877,4 +880,10 @@ h6 {
 .tracks__item__toright {
   text-align: right;
   color: rgb(175, 1, 1);
+}
+
+/* Input fields */
+
+.track-form__input {
+  background-color: rgba(175, 1, 1, 0.45);
 }

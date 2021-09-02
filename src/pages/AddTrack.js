@@ -36,7 +36,7 @@ const AddTrack = ({
       setError('');
       await addNewTrack(result, itemId, date);
     } catch {
-      setError('Unable to create new tracks');
+      setError('Unable to create new record');
     }
   };
 
