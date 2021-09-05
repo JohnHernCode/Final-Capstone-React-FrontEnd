@@ -1,0 +1,28 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TrackList should match with snapshot 1`] = `
+<div
+  className="TrackList"
+>
+  <h1
+    className="home__heading"
+  >
+    All Records
+  </h1>
+  <div
+    className="content"
+  >
+    
+    <div
+      className="tracks mb3"
+    />
+    <a
+      className="home__btn"
+      href="/track/create"
+      onClick={[Function]}
+    >
+      Add New Record
+    </a>
+  </div>
+</div>
+`;
